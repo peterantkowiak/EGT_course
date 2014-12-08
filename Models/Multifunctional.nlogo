@@ -107,10 +107,10 @@ to color_patch ; patch
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-228
-23
-538
-354
+226
+230
+542
+567
 -1
 -1
 6.0
@@ -124,9 +124,9 @@ GRAPHICS-WINDOW
 1
 1
 0
-49
+50
 0
-49
+50
 1
 1
 1
@@ -255,34 +255,45 @@ cost
 Number
 
 CHOOSER
-20
-434
-206
-479
+217
+49
+403
+94
 Game_Type
 Game_Type
 "Prisoner's Dilemma" "Hawk-Dove"
 0
 
 CHOOSER
-21
-506
-159
-551
+215
+170
+353
+215
 Mode
 Mode
 "Spatial" "Nonspatial"
 0
 
 CHOOSER
-23
-577
-184
-622
+216
+109
+377
+154
 Neighborhood_size
 Neighborhood_size
 4 8 12 24 28
 1
+
+MONITOR
+413
+142
+525
+187
+Population Size
+max-pxcor * max-pycor
+17
+1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
