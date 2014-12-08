@@ -1,85 +1,26 @@
-;; A spatial Prisoner's dilemma
-;; ==================================
 
-
-; Global interface variables:
-; benefit
-; cost
-; popsize: Population size (constant)
-; baseline_fitness
-; initial_propD: Initial proportion of defectors
-; Neighborhood_size
-Globals[
-  Nradius
-]
-
-
-patches-own [strategy_current strategy_new fitness]
-; strategy-current: either C (cooperate) or D (defect)
-; strategy-new: strategy of newly produced individual (after reproduction)
-; fitness: baseline fitness and payoff of the game
-
-
-;; Main procedures
-;; ---------------
 
 to setup
-    clear-all
-    if Neighborhood_size = 4 [set Nradius 1]
-    if Neighborhood_size = 8 [set Nradius sqrt 2]
-    if Neighborhood_size = 12 [set Nradius 2]
-    if Neighborhood_size = 24 [set Nradius 2 * sqrt 2]
-    if Neighborhood_size = 28 [set Nradius 3]
-    ask patches [set fitness baseline_fitness]
-    ask patches [ifelse random-float 1 < initial_propD [set strategy_current "D"] [set strategy_current "C"]]
-    ask patches [color_patch]
-    reset-ticks
+  ask patches [set pcolor blue]
+  ask patch 30 30 [set pcolor red]
 end
 
-to go
-  if all? patches [strategy_current = "C"] [stop]
-  if all? patches [strategy_current = "D"] [stop]
-  ask patches [play]
-  tick
-  ask patches [reproduce]
-  ask patches [set fitness baseline_fitness set strategy_current strategy_new]
-  ask patches [color_patch]
-end
-
-
-;; Help procedures
-;; ---------------
-
-to play ; patch
-  let Nghbrs other patches in-radius Nradius
-  let local-propC count Nghbrs with [strategy_current = "C"] / (count Nghbrs)
-  ifelse strategy_current = "C" [set fitness fitness + local-propC * benefit - cost] [set fitness fitness + local-propC * benefit]
-end
-
-
-to reproduce ; patch
-  set strategy_new strategy_current
-  let competitor one-of other patches in-radius Nradius
-  let change-prob ([fitness] of competitor - fitness) / (benefit + cost)
-  if change-prob > 0 [
-    let random-change random-float 1
-    if random-change < change-prob [set strategy_new [strategy_current] of competitor]
+to go 
+  if pcolor = red [
+    let Nghbrs other patches in-radius Nrad
+    ask Nghbrs [set pcolor green]
   ]
-end
-
-
-to color_patch ; patch
-  ifelse strategy_current = "C" [set pcolor blue] [set pcolor red]
+  ;ask neighbors of patch 30 30 [set [pcolor] green]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-228
-23
-538
-354
--1
--1
-6.0
+210
+10
+649
+470
+16
+16
+13.0
 1
 10
 1
@@ -89,58 +30,21 @@ GRAPHICS-WINDOW
 1
 1
 1
+-16
+16
+-16
+16
 0
-49
 0
-49
-1
-1
 1
 ticks
 30.0
 
-INPUTBOX
-32
-48
-193
-108
-benefit
-1
-1
-0
-Number
-
-INPUTBOX
-30
-208
-191
-268
-baseline_fitness
-0
-1
-0
-Number
-
-SLIDER
-27
-300
-199
-333
-initial_propD
-initial_propD
-0
-1
-0.01
-0.01
-1
-NIL
-HORIZONTAL
-
 BUTTON
-30
-371
-103
-404
+26
+80
+99
+113
 NIL
 setup
 NIL
@@ -153,81 +57,31 @@ NIL
 NIL
 1
 
+CHOOSER
+52
+142
+190
+187
+Nrad
+Nrad
+1 1.5 2.8285 2 3
+2
+
 BUTTON
-137
-371
-200
-404
+52
+261
+115
+294
 NIL
 go
+NIL
+1
 T
-1
-T
-OBSERVER
+PATCH
 NIL
 NIL
 NIL
 NIL
-1
-
-PLOT
-565
-28
-923
-289
-Frequency of strategies
-Time
-Frequency
-0.0
-10.0
-0.0
-1.0
-true
-true
-"" ""
-PENS
-"Cooperators" 1.0 0 -13345367 true "" "plot count patches with [strategy_current = \"C\"] / (count patches)"
-"Defectors" 1.0 0 -2674135 true "" "plot count patches with [strategy_current = \"D\"] / (count patches)"
-
-PLOT
-563
-304
-923
-565
-Fitness
-Time
-Mean fitness
-0.0
-10.0
-0.0
-1.0
-true
-true
-"" ""
-PENS
-"Population" 1.0 0 -16777216 true "" "plot mean [fitness] of patches"
-"Cooperators" 1.0 0 -13345367 true "" "plot mean [fitness] of patches with [strategy_current = \"C\"]"
-"Defectors" 1.0 0 -2674135 true "" "plot mean [fitness] of patches with [strategy_current = \"D\"]"
-
-INPUTBOX
-31
-127
-192
-187
-cost
-0.1
-1
-0
-Number
-
-CHOOSER
-34
-454
-195
-499
-Neighborhood_size
-Neighborhood_size
-4 8 12 24 28
 1
 
 @#$#@#$#@
