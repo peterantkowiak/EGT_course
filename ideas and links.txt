@@ -1,2 +1,9 @@
-Hallo Gregor! 
-Hallo Peter du alter PC Nerd!
+Tasks:
+
+compare the effect of spatial structure on the persistence of cooperators in the in the PD and HD games
+
+change the size of the neighbourhood in the spatial games and analyse how that affects the persistence of cooperators.
+-> moore-neighbourhood (8), von Neumann (4) & an even bigger one
+
+Implement mixed (stochastic) strategies in the spatial and non-spatial HD games. Compare the effect of spatial structure with pure and mixed strategies.
+-> introduce mutation rate similar to ants game
