@@ -18,7 +18,7 @@ Globals[
 
 
 
-patches-own [strategy_current strategy_new fitness]
+patches-own [strategy_current strategy_new fitness change_prob]
 ; strategy-current: either C (cooperate) or D (defect)
 ; strategy-new: strategy of newly produced individual (after reproduction)
 ; fitness: baseline fitness and payoff of the game
@@ -56,18 +56,29 @@ end
 
 to play ; patch
   let Nghbrs other patches in-radius Nradius
-  let local-propC count Nghbrs with [strategy_current = "C"] / (count Nghbrs)
-  ifelse strategy_current = "C" [set fitness fitness + local-propC * benefit - cost] [set fitness fitness + local-propC * benefit]
+  let local_propC count Nghbrs with [strategy_current = "C"] / (count Nghbrs)
+  let local_propD count Nghbrs with [strategy_current = "D"] / (count Nghbrs)
+  if Game_Type = "Prisoner's Dilemma" [
+    ifelse strategy_current = "C" [set fitness fitness + local_propC * benefit - cost] [set fitness fitness + local_propC * benefit]
+    ]
+  if Game_Type = "Hawk-Dove" [
+    ifelse strategy_current = "C" [set fitness fitness + (0.5 * (benefit - cost + local_propD * benefit - local_propD * cost))] [set fitness fitness + local_propC * benefit]
+    ]
 end
 
 
 to reproduce ; patch
   set strategy_new strategy_current
   let competitor one-of other patches in-radius Nradius
-  let change-prob ([fitness] of competitor - fitness) / (benefit + cost)
-  if change-prob > 0 [
-    let random-change random-float 1
-    if random-change < change-prob [set strategy_new [strategy_current] of competitor]
+  if Game_Type = "Prisoner's Dilemma" [
+    set change_prob ([fitness] of competitor - fitness) / (benefit + cost)
+  ]
+  if Game_Type = "Hawk-Dove" [
+    set change_prob ([fitness] of competitor - fitness) / (benefit)
+  ]
+  if change_prob > 0 [
+    let random_change random-float 1
+    if random_change < change_prob [set strategy_new [strategy_current] of competitor]
   ]
 end
 
