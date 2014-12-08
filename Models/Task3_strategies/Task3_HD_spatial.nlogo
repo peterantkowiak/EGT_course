@@ -51,7 +51,7 @@ end
 to reproduce ; patch
   set strategy_new strategy_current
   let competitor one-of neighbors
-  let change_prob ([fitness] of competitor - fitness) / (benefit + cost)
+  let change_prob ([fitness] of competitor - fitness) / (benefit)
   if change_prob > 0 [
     let random_change random-float 1
     if random_change < change_prob [set strategy_new [strategy_current] of competitor]
