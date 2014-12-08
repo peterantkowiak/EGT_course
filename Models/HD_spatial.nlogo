@@ -1,17 +1,19 @@
-;; The Prisoner's Dilemma
-;; ======================
-;; Variant 1: Fitness is determined by letting pairs of players play against each other
+;; A spatial Prisoner's dilemma
+;; ==================================
 
 
 ; Global interface variables:
-; benefit: Benefit of cooperation for partner
-; cost: Cost of cooperation for actor
-
-; baseline_fitness: fitness component that is independent of the game (i.e., equal for all players)
+; benefit
+; cost
+; popsize: Population size (constant)
+; baseline_fitness
 ; initial_propD: Initial proportion of defectors
 
 
-patches-own [strategy_cur strategy_new fitness]
+patches-own [strategy_current strategy_new fitness]
+; strategy-current: either C (cooperate) or D (defect)
+; strategy-new: strategy of newly produced individual (after reproduction)
+; fitness: baseline fitness and payoff of the game
 
 
 ;; Main procedures
@@ -20,48 +22,54 @@ patches-own [strategy_cur strategy_new fitness]
 to setup
     clear-all
     ask patches [set fitness baseline_fitness]
-    ask patches [ifelse random-float 1 < initial_propD [set strategy_cur "D"] [set strategy_cur "C"]]
-    ask patches [ifelse strategy_cur = "D" [set pcolor red] [set pcolor blue]]
+    ask patches [ifelse random-float 1 < initial_propD [set strategy_current "D"] [set strategy_current "C"]]
+    ask patches [color_patch]
     reset-ticks
 end
 
 to go
-  if all? patches [strategy_cur = "C"] [stop]
-  if all? patches [strategy_cur = "D"] [stop]
+  if all? patches [strategy_current = "C"] [stop]
+  if all? patches [strategy_current = "D"] [stop]
   ask patches [play]
   tick
   ask patches [reproduce]
-  ask patches [set fitness baseline_fitness set strategy_cur strategy_new] ; why?
-  ask patches [ifelse strategy_cur = "D" [set pcolor red] [set pcolor blue]]
+  ask patches [set fitness baseline_fitness set strategy_current strategy_new]
+  ask patches [color_patch]
 end
 
 
 ;; Help procedures
 ;; ---------------
 
-
-to play
-  let prop_defect (count neighbors with [strategy_cur = "D"]) / (count neighbors)
-  ifelse strategy_cur = "C" [set fitness fitness + (1 - prop_defect) * benefit - cost] [set fitness fitness + (1 - prop_defect) * benefit]
+to play ; patch
+  let local-propC count neighbors with [strategy_current = "C"] / (count neighbors)
+  ifelse strategy_current = "C" [set fitness fitness + local-propC * benefit - cost] [set fitness fitness + local-propC * benefit]
 end
 
 
-to reproduce ; player procedure
-  set strategy_new strategy_cur
-  let comp one-of neighbors
-  let Pcomp [fitness] of comp
-  if (Pcomp - fitness) > 0 AND random-float 1 < ((Pcomp - fitness) / (benefit + cost)) [set strategy_new [strategy_cur] of comp] 
+to reproduce ; patch
+  set strategy_new strategy_current
+  let competitor one-of neighbors
+  let change-prob ([fitness] of competitor - fitness) / (benefit + cost)
+  if change-prob > 0 [
+    let random-change random-float 1
+    if random-change < change-prob [set strategy_new [strategy_current] of competitor]
+  ]
 end
 
+
+to color_patch ; patch
+  ifelse strategy_current = "C" [set pcolor blue] [set pcolor red]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
-769
-377
-1083
-712
-30
-30
-5.0
+228
+23
+538
+354
+-1
+-1
+6.0
 1
 10
 1
@@ -71,12 +79,12 @@ GRAPHICS-WINDOW
 1
 1
 1
--30
-30
--30
-30
 0
+49
 0
+49
+1
+1
 1
 ticks
 30.0
@@ -93,21 +101,10 @@ benefit
 Number
 
 INPUTBOX
-31
-124
-192
-184
-cost
-0.1
-1
-0
-Number
-
-INPUTBOX
-31
-301
-192
-361
+30
+208
+191
+268
 baseline_fitness
 0
 1
@@ -115,25 +112,25 @@ baseline_fitness
 Number
 
 SLIDER
-28
-393
-200
-426
+27
+300
+199
+333
 initial_propD
 initial_propD
 0
 1
-0.05
+0.01
 0.01
 1
 NIL
 HORIZONTAL
 
 BUTTON
-248
-393
-321
-426
+30
+371
+103
+404
 NIL
 setup
 NIL
@@ -147,10 +144,10 @@ NIL
 1
 
 BUTTON
-355
-393
-418
-426
+137
+371
+200
+404
 NIL
 go
 T
@@ -164,10 +161,10 @@ NIL
 1
 
 PLOT
-222
-50
-606
-341
+565
+28
+923
+289
 Frequency of strategies
 Time
 Frequency
@@ -179,25 +176,14 @@ true
 true
 "" ""
 PENS
-"Cooperators" 1.0 0 -13345367 true "" "plot count patches with [strategy_cur = \"C\"] / count patches"
-"Defectors" 1.0 0 -2674135 true "" "plot count patches with [strategy_cur = \"D\"] / count patches"
-
-MONITOR
-505
-380
-597
-425
-# Defectors
-count patches with [strategy_cur = \"D\"]
-17
-1
-11
+"Cooperators" 1.0 0 -13345367 true "" "plot count patches with [strategy_current = \"C\"] / (count patches)"
+"Defectors" 1.0 0 -2674135 true "" "plot count patches with [strategy_current = \"D\"] / (count patches)"
 
 PLOT
-639
-51
-1031
-342
+563
+304
+923
+565
 Fitness
 Time
 Mean fitness
@@ -210,8 +196,19 @@ true
 "" ""
 PENS
 "Population" 1.0 0 -16777216 true "" "plot mean [fitness] of patches"
-"Cooperators" 1.0 0 -13345367 true "" "plot mean [fitness] of patches with [strategy_cur = \"C\"]"
-"Defectors" 1.0 0 -2674135 true "" "plot mean [fitness] of patches with [strategy_cur = \"D\"]"
+"Cooperators" 1.0 0 -13345367 true "" "plot mean [fitness] of patches with [strategy_current = \"C\"]"
+"Defectors" 1.0 0 -2674135 true "" "plot mean [fitness] of patches with [strategy_current = \"D\"]"
+
+INPUTBOX
+31
+127
+192
+187
+cost
+0.1
+1
+0
+Number
 
 @#$#@#$#@
 ## WHAT IS IT?
