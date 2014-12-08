@@ -8,6 +8,7 @@
 ; popsize: Population size (constant)
 ; baseline_fitness
 ; initial_propD: Initial proportion of defectors
+Globals[Nradius]
 
 
 patches-own [strategy_current strategy_new fitness]
@@ -21,6 +22,11 @@ patches-own [strategy_current strategy_new fitness]
 
 to setup
     clear-all
+    if Neighborhood_size = 4 [set Nradius 1]
+    if Neighborhood_size = 8 [set Nradius sqrt 2]
+    if Neighborhood_size = 12 [set Nradius 2]
+    if Neighborhood_size = 24 [set Nradius 2 * sqrt 2]
+    if Neighborhood_size = 28 [set Nradius 3]
     ask patches [set fitness baseline_fitness]
     ask patches [ifelse random-float 1 < initial_propD [set strategy_current "D"] [set strategy_current "C"]]
     ask patches [color_patch]
@@ -41,16 +47,17 @@ end
 ;; Help procedures
 ;; ---------------
 
-to play ; patch
-  let local_propC count neighbors with [strategy_current = "C"] / (count neighbors)
-  let local_propD count neighbors with [strategy_current = "D"] / (count neighbors)
+to play ; patch 
+  let Nghbrs other patches in-radius Nradius
+  let local_propC count Nghbrs with [strategy_current = "C"] / (count Nghbrs)
+  let local_propD count Nghbrs with [strategy_current = "D"] / (count Nghbrs)
   ifelse strategy_current = "C" [set fitness fitness + (0.5 * (benefit - cost + local_propD * benefit - local_propD * cost))] [set fitness fitness + local_propC * benefit]
 end
 
 
 to reproduce ; patch
   set strategy_new strategy_current
-  let competitor one-of neighbors
+  let competitor one-of other patches in-radius Nradius
   let change_prob ([fitness] of competitor - fitness) / (benefit)
   if change_prob > 0 [
     let random_change random-float 1
@@ -96,7 +103,7 @@ INPUTBOX
 193
 108
 benefit
-3
+1
 1
 0
 Number
@@ -206,10 +213,20 @@ INPUTBOX
 192
 187
 cost
-1
+0.1
 1
 0
 Number
+
+CHOOSER
+76
+466
+214
+511
+Neighborhood_size
+Neighborhood_size
+4 8 12 24 28
+4
 
 @#$#@#$#@
 ## WHAT IS IT?
