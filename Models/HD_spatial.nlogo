@@ -42,18 +42,19 @@ end
 ;; ---------------
 
 to play ; patch
-  let local-propC count neighbors with [strategy_current = "C"] / (count neighbors)
-  ifelse strategy_current = "C" [set fitness fitness + local-propC * benefit - cost] [set fitness fitness + local-propC * benefit]
+  let local_propC count neighbors with [strategy_current = "C"] / (count neighbors)
+  let local_propD count neighbors with [strategy_current = "D"] / (count neighbors)
+  ifelse strategy_current = "C" [set fitness fitness + (0.5 * (benefit - cost + local_propD * benefit - local_propD * cost))] [set fitness fitness + local_propC * benefit]
 end
 
 
 to reproduce ; patch
   set strategy_new strategy_current
   let competitor one-of neighbors
-  let change-prob ([fitness] of competitor - fitness) / (benefit + cost)
-  if change-prob > 0 [
-    let random-change random-float 1
-    if random-change < change-prob [set strategy_new [strategy_current] of competitor]
+  let change_prob ([fitness] of competitor - fitness) / (benefit + cost)
+  if change_prob > 0 [
+    let random_change random-float 1
+    if random_change < change_prob [set strategy_new [strategy_current] of competitor]
   ]
 end
 
@@ -95,7 +96,7 @@ INPUTBOX
 193
 108
 benefit
-1
+3
 1
 0
 Number
@@ -120,7 +121,7 @@ initial_propD
 initial_propD
 0
 1
-0.01
+0.05
 0.01
 1
 NIL
@@ -205,7 +206,7 @@ INPUTBOX
 192
 187
 cost
-0.1
+1
 1
 0
 Number
