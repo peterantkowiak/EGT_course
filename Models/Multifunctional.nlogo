@@ -43,9 +43,11 @@ end
 to go
   if all? patches [strategy_current = "C"] [stop]
   if all? patches [strategy_current = "D"] [stop]
-  ask patches [play]
+  if Mode = "Spatial" [ask patches [play_spatial]]
+  if Mode = "Nonspatial" [ask patches [play_nonspatial]]
   tick
-  ask patches [reproduce]
+  if Mode = "Spatial" [ask patches [reproduce_spatial]]
+  if Mode = "Nonspatial" [ask patches [reproduce_nonspatial]]
   ask patches [set fitness baseline_fitness set strategy_current strategy_new]
   ask patches [color_patch]
 end
@@ -54,7 +56,7 @@ end
 ;; Help procedures
 ;; ---------------
 
-to play ; patch
+to play_spatial ; patch
   let Nghbrs other patches in-radius Nradius
   let local_propC count Nghbrs with [strategy_current = "C"] / (count Nghbrs)
   let local_propD count Nghbrs with [strategy_current = "D"] / (count Nghbrs)
@@ -66,8 +68,20 @@ to play ; patch
     ]
 end
 
+to play_nonspatial
+  let propC count patches with [strategy_current = "C"] / (count patches)
+  let propD count patches with [strategy_current = "D"] / (count patches)
+  if Game_Type = "Prisoner's Dilemma" [ 
+  ifelse strategy_current = "C" [set fitness fitness + propC * benefit - cost] [set fitness fitness + propC * benefit]
+  ]
+  if Game_Type = "Hawk-Dove" [
+  ifelse strategy_current = "C" [set fitness fitness + (0.5 * (benefit - cost + propD * benefit - propD * cost))] [set fitness fitness + propC * benefit]
+  ]
 
-to reproduce ; patch
+end
+
+
+to reproduce_spatial ; patch
   set strategy_new strategy_current
   let competitor one-of other patches in-radius Nradius
   if Game_Type = "Prisoner's Dilemma" [
@@ -80,6 +94,11 @@ to reproduce ; patch
     let random_change random-float 1
     if random_change < change_prob [set strategy_new [strategy_current] of competitor]
   ]
+end
+
+to reproduce_nonspatial
+  let fit_defect (sum [fitness] of patches with [strategy_current = "D"]) / (sum [fitness] of patches)
+  ifelse random-float 1 < fit_defect [set strategy_new "D"] [set strategy_new "C"]
 end
 
 
