@@ -44,7 +44,7 @@ end
 to play ; patch
   let local_propC count neighbors with [strategy_current = "C"] / (count neighbors)
   let local_propD count neighbors with [strategy_current = "D"] / (count neighbors)
-  ifelse strategy_current = "C" [set fitness fitness + (0.5 * (benefit - cost + local_propD * benefit - local_propD * cost))] [set fitness fitness + local_propC * benefit]
+  ifelse strategy_current = "C" [set fitness fitness +  (0.5 * local_propC * cost + benefit - cost)] [set fitness fitness + local_propC * benefit]
 end
 
 

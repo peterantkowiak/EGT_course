@@ -50,10 +50,10 @@ end
 to determine_strategy ; player procedure
   let probD random-float 1
   ifelse probD < fit_defect [set strategy "D"] [set strategy "C"]
-end
+end 
 
 to play ; player procedure
-  ifelse strategy = "C" [set fitness fitness + (0.5 * (benefit - cost + prop_defect * benefit - prop_defect * cost))] [set fitness fitness + (1 - prop_defect) * benefit]
+  ifelse strategy = "C" [set fitness fitness + (0.5 * (1 - prop_defect) * cost + benefit - cost)] [set fitness fitness + (1 - prop_defect) * benefit]
 end
 
 to reproduce ; observer
