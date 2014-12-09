@@ -8,10 +8,13 @@
 ; popsize: Population size (constant)
 ; baseline_fitness
 ; initial_propD: Initial proportion of defectors
+; strategy
+; mutation_rate: standard deviation of the random normal distribution generating the mutations
+; initial_heterogeneity: standard deviation of the random normal distribution generating the initial population
 
 
-patches-own [strategy_current strategy_new fitness]
-; strategy-current: either C (cooperate) or D (defect)
+patches-own [strategy_current strategy_new fitness probD]
+; strategy-current: P(C) - the propability that the cell plays C
 ; strategy-new: strategy of newly produced individual (after reproduction)
 ; fitness: baseline fitness and payoff of the game
 
@@ -19,10 +22,28 @@ patches-own [strategy_current strategy_new fitness]
 ;; Main procedures
 ;; ---------------
 
+to-report rdnorm_b [mid dev mmin mmax]
+  if mid < mmin OR mid > mmax [print "ERROR! Invalid rdnorm input!" stop]
+  let result random-normal mid dev
+  if result < mmin or result > mmax
+    [ report rdnorm_b mid dev mmin mmax ]
+  report result
+end
+
+
 to setup
     clear-all
     ask patches [set fitness baseline_fitness]
-    ask patches [ifelse random-float 1 < initial_propD [set strategy_current "D"] [set strategy_current "C"]]
+    if strategy = "Pure" [ask patches [
+        ifelse random-float 1 < initial_propD [set strategy_current "D"] [set strategy_current "C"]]
+    ]
+    if strategy = "Mixed" [
+      ask patches [
+        set probD rdnorm_b initial_propD initial_heterogeneity 0 1]
+      ask patches [
+        ifelse random-float 1 < probD [set strategy_current "D"] [set strategy_current "C"]]
+        ]
+    
     ask patches [color_patch]
     reset-ticks
 end
@@ -32,7 +53,8 @@ to go
   if all? patches [strategy_current = "D"] [stop]
   ask patches [play]
   tick
-  ask patches [reproduce]
+  if strategy = "Pure" [ask patches [reproduce_pure]]
+  if strategy = "Mixed" [ask patches [reproduce_mixed]]
   ask patches [set fitness baseline_fitness set strategy_current strategy_new]
   ask patches [color_patch]
 end
@@ -44,18 +66,28 @@ end
 to play ; patch
   let local_propC count neighbors with [strategy_current = "C"] / (count neighbors)
   let local_propD count neighbors with [strategy_current = "D"] / (count neighbors)
-  ifelse strategy_current = "C" [set fitness fitness +  (0.5 * (local_propC) * cost + benefit - cost)] [set fitness fitness + local_propC * benefit]
+  ifelse strategy_current = "C" [set fitness fitness +  (0.5 * local_propC * cost + benefit - cost)] [set fitness fitness + local_propC * benefit]
 end
 
 
-to reproduce ; patch
+to reproduce_pure ; patch
   set strategy_new strategy_current
   let competitor one-of neighbors
   let change_prob ([fitness] of competitor - fitness) / (benefit)
   if change_prob > 0 [
-    let random_change random-float 1
-    if random_change < change_prob [set strategy_new [strategy_current] of competitor]
+    if random-float 1 < change_prob [set strategy_new [strategy_current] of competitor]
   ]
+end
+
+
+to reproduce_mixed ; patch
+  let competitor one-of neighbors
+  let change_prob ([fitness] of competitor - fitness) / (benefit)
+  if change_prob <= 0 [set probD rdnorm_b probD 0.002 0 1]
+  if change_prob > 0 [
+    if random-float 1 < change_prob [set probD rdnorm_b [probD] of competitor mutation_rate 0 1]
+  ]
+  ifelse random-float 1 < probD [set strategy_new "D"] [set strategy_new "C"]
 end
 
 
@@ -121,7 +153,7 @@ initial_propD
 initial_propD
 0
 1
-0.05
+0.02
 0.01
 1
 NIL
@@ -210,6 +242,64 @@ cost
 1
 0
 Number
+
+CHOOSER
+29
+435
+167
+480
+strategy
+strategy
+"Mixed" "Pure"
+0
+
+PLOT
+227
+376
+539
+561
+Average ProbD
+NIL
+NIL
+0.0
+1.0
+0.0
+1.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot mean [probD] of patches"
+
+SLIDER
+28
+508
+200
+541
+mutation_rate
+mutation_rate
+0
+0.1
+0.002
+0.001
+1
+NIL
+HORIZONTAL
+
+SLIDER
+26
+569
+229
+602
+initial_heterogeneity
+initial_heterogeneity
+0
+0.1
+0.02
+0.01
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
