@@ -75,7 +75,7 @@ to play_nonspatial
   ifelse strategy_current = "C" [set fitness fitness + propC * benefit - cost] [set fitness fitness + propC * benefit]
   ]
   if Game_Type = "Hawk-Dove" [
-  ifelse strategy_current = "C" [set fitness fitness + (0.5 * (benefit - cost + propD * benefit - propD * cost))] [set fitness fitness + propC * benefit]
+  ifelse strategy_current = "C" [set fitness fitness + ((0.5 * propC * cost) + benefit - cost)] [set fitness fitness + propC * benefit]
   ]
 
 end
