@@ -51,7 +51,7 @@ to play ; patch
   let Nghbrs other patches in-radius Nradius
   let local_propC count Nghbrs with [strategy_current = "C"] / (count Nghbrs)
   let local_propD count Nghbrs with [strategy_current = "D"] / (count Nghbrs)
-  ifelse strategy_current = "C" [set fitness fitness + (0.5 * (benefit - cost + local_propD * benefit - local_propD * cost))] [set fitness fitness + local_propC * benefit]
+  ifelse strategy_current = "C" [set fitness fitness + ((0.5 * local_propC * cost) + benefit - cost)] [set fitness fitness + local_propC * benefit]
 end
 
 
@@ -69,6 +69,9 @@ end
 to color_patch ; patch
   ifelse strategy_current = "C" [set pcolor blue] [set pcolor red]
 end
+
+
+
 @#$#@#$#@
 GRAPHICS-WINDOW
 228
@@ -226,7 +229,7 @@ CHOOSER
 Neighborhood_size
 Neighborhood_size
 4 8 12 24 28
-4
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
