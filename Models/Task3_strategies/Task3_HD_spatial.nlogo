@@ -83,7 +83,7 @@ end
 to reproduce_mixed ; patch
   let competitor one-of neighbors
   let change_prob ([fitness] of competitor - fitness) / (benefit)
-  if change_prob <= 0 [set probD rdnorm_b probD 0.002 0 1]
+  if change_prob <= 0 [set probD rdnorm_b probD mutation_rate 0 1]
   if change_prob > 0 [
     if random-float 1 < change_prob [set probD rdnorm_b [probD] of competitor mutation_rate 0 1]
   ]
