@@ -43,7 +43,6 @@ to setup
       ask patches [
         ifelse random-float 1 < probD [set strategy_current "D"] [set strategy_current "C"]]
         ]
-    
     ask patches [color_patch]
     reset-ticks
 end
@@ -128,7 +127,7 @@ INPUTBOX
 193
 108
 benefit
-3
+1
 1
 0
 Number
@@ -153,7 +152,7 @@ initial_propD
 initial_propD
 0
 1
-0.02
+0.01
 0.01
 1
 NIL
@@ -238,7 +237,7 @@ INPUTBOX
 192
 187
 cost
-1
+0.1
 1
 0
 Number
