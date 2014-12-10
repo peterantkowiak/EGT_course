@@ -211,7 +211,7 @@ initial_propD
 initial_propD
 0
 1
-0
+0.01
 0.01
 1
 NIL
@@ -309,7 +309,7 @@ CHOOSER
 Game_Type
 Game_Type
 "Prisoner's Dilemma" "Hawk-Dove"
-1
+0
 
 CHOOSER
 215
@@ -319,7 +319,7 @@ CHOOSER
 Mode
 Mode
 "Nonspatial_Pure" "Spatial_Pure" "Spatial_MixedStrategy"
-2
+1
 
 CHOOSER
 216
