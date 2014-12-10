@@ -66,8 +66,8 @@ end
 GRAPHICS-WINDOW
 228
 23
-538
-354
+544
+360
 -1
 -1
 6.0
@@ -81,9 +81,9 @@ GRAPHICS-WINDOW
 1
 1
 0
-49
+50
 0
-49
+50
 1
 1
 1
@@ -96,7 +96,7 @@ INPUTBOX
 193
 108
 benefit
-3
+1
 1
 0
 Number
@@ -121,7 +121,7 @@ initial_propD
 initial_propD
 0
 1
-0.05
+0.01
 0.01
 1
 NIL
@@ -206,7 +206,7 @@ INPUTBOX
 192
 187
 cost
-1
+0.1
 1
 0
 Number
