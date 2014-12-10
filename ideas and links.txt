@@ -8,3 +8,12 @@ change the size of the neighbourhood in the spatial games and analyse how that a
 
 Implement mixed (stochastic) strategies in the spatial and non-spatial HD games. Compare the effect of spatial structure with pure and mixed strategies.
 -> introduce mutation rate similar to ants game
+
+
+
+____________________
+
+Master-Document
+
+Standard error of the estimates
+

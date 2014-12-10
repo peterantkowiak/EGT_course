@@ -1,5 +1,18 @@
 ## EGT-graphs ##
 
+
+#---------------------------------------
+########### read data #################
+
+
+#---------------------------------------
+########### calculate means ###########
+
+
+#---------------------------------------
+########### pot #######################
+
+
 exp <- read.csv("/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/r-scripts/PDstrategies.csv", head=T, skip=6, dec=".")
 
 #install.packages("data.table")
