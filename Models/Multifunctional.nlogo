@@ -91,10 +91,10 @@ to reproduce_spatial ; patch
     set change_prob ([fitness] of competitor - fitness) / (benefit)
   ]
   if change_prob > 0 [
-    let random_change random-float 1
-    if random_change < change_prob [set strategy_new [strategy_current] of competitor]
+    if random-float 1 < change_prob [set strategy_new [strategy_current] of competitor]
   ]
 end
+
 
 to reproduce_nonspatial
   let fit_defect (sum [fitness] of patches with [strategy_current = "D"]) / (sum [fitness] of patches)
@@ -105,6 +105,11 @@ end
 to color_patch ; patch
   ifelse strategy_current = "C" [set pcolor blue] [set pcolor red]
 end
+
+
+
+
+
 @#$#@#$#@
 GRAPHICS-WINDOW
 226
