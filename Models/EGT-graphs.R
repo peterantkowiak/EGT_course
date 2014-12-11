@@ -1,41 +1,43 @@
 ## EGT-graphs ##
 
+#install.packages("data.table")
+# install.packages("Hmisc")
+
+library(Hmisc)
+library(data.table)
 
 #---------------------------------------
 ########### read data #################
 
-filename <- "Task1_HD_nonspatial_nb8"
+#filename <- "Task1_HD_nonspatial_nb8"
 #filename <- "Task1_HD_spatial_nb8"
-#filename <- "Task1_PD_nonspatial_nb8"
+#filename <- "Task1_PD_nonspatial_nb8" #### corupt! Too low initial_propD!
 #filename <- "Task1_PD_spatial_nb8"
-#filename <- "Task2_HD_spatial_nb4"
-#filename <- "Task1_HD_nonspatial_nb8"
-#filename <- "Task1_HD_nonspatial_nb8"
-#filename <- "Task1_HD_nonspatial_nb8"
-#filename <- "Task1_HD_nonspatial_nb8"
-#filename <- "Task1_HD_nonspatial_nb8"
-#filename <- "Task1_HD_nonspatial_nb8"
-#filename <- "Task1_HD_nonspatial_nb8"
+filename <- "Task2_HD_spatial_nb4"
+#filename <- "Task2_HD_spatial_nb12"
+#filename <- "Task2_HD_spatial_nb24"
+#filename <- "Task2_PD_spatial_nb4"
+#filename <- "Task2_PD_spatial_nb12"
+#filename <- "Task2_PD_spatial_nb24"
+#filename <- "Task3_HD_spatial_nb8_pure_10000"
+
+### needs separate treatment --> in line "setnames", change ncol(exp) to ncol(exp)-1
+#filename <- "Task3_HD_spatial_nb8_mixed_10000"
+
+
 
 directory <- "/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/ResultsAndRcode/"
 
 
 exp <- read.csv(paste0(directory,filename,".csv",collapse=""), , head=T, skip=6, dec=".")
 
-  
-#exp <- read.csv("/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/ResultsAndRcode/Task1_HD_nonspatial_nb8.csv", head=T, skip=6, dec=".")
 
+setnames(exp,ncol(exp),"propC")
 
-
-#install.packages("data.table")
-library(data.table)
-
-
-exp.s <- data.table(exp, key="X.run.number.")
+exp.s <- data.table(subset(exp, select = c(X.run.number.,benefit,cost,initial_propD,X.step.,propC)), key="X.run.number.")
 #exp.s
 
 exp.s$r <- round(exp.s$cost/(2-exp.s$cost), digits = 3) 
-setnames(exp.s,8,"propC")
 
 r_levels <- matrix(nrow = length(unique(exp.s$r)), ncol = 4, dimnames = list(as.character(unique(exp.s$r)),c("r","mean","dev","serror")))
 r_levels[,1] <- unique(exp.s$r)
@@ -57,10 +59,9 @@ for (i in 1:nrow(r_levels)){
 
 #---------------------------------------
 ########### plot ######################
-# install.packages("Hmisc")
-library(Hmisc)
 
-plot(r_levels[,1], r_levels[,2], type = "p", pch=19, col="red", las=1, ylab="Frequency of cooperation  [ t = 5000, i = 10 ]", xlab="cost / benefit ratio r", main=paste(filename) )
+
+plot(r_levels[,1], r_levels[,2], type = "p", pch=19, col="red", las=1, ylab="Frequency of cooperation  [ t = 5000, i = 10 ]", xlab="cost / benefit ratio r", main=paste(filename), ylim = c(0,1))
 
 arrows(r_levels[,1], r_levels[,2]-1.96*r_levels[,4], r_levels[,1], r_levels[,2]+1.96*r_levels[,4], length=0.05, angle=90, code=3)
 # Error bars indicating the standard error with a 95 % confidence interval
