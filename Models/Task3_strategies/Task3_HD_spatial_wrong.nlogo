@@ -8,25 +8,16 @@
 ; popsize: Population size (constant)
 ; baseline_fitness
 ; initial_propD: Initial proportion of defectors
-; Neighborhood_size
-; Mode
-; Game_Type
 ; strategy
-; initial_heterogeneity: standard deviation of the random normal distribution generating the initial population
 ; mutation_size: standard deviation of the random normal distribution generating the mutations
+; initial_heterogeneity: standard deviation of the random normal distribution generating the initial population
 ; mutation_probability: probability that a mutation occurs
 ; payoff_assessment: two different methods to calculate change_prob (z in the paper): a linear function or a nonlinear function including an error term
 
 
 
-Globals[
-  Nradius
-]
-
-
-
-patches-own [strategy_current strategy_new fitness change_prob probD]
-; strategy-current: either C (cooperate) or D (defect)
+patches-own [strategy_current strategy_new fitness probD change_prob]
+; strategy-current: P(C) - the propability that the cell plays C
 ; strategy-new: strategy of newly produced individual (after reproduction)
 ; fitness: baseline fitness and payoff of the game
 
@@ -45,16 +36,11 @@ end
 
 to setup
     clear-all
-    if Neighborhood_size = 4 [set Nradius 1]
-    if Neighborhood_size = 8 [set Nradius sqrt 2]
-    if Neighborhood_size = 12 [set Nradius 2]
-    if Neighborhood_size = 24 [set Nradius 2 * sqrt 2]
-    if Neighborhood_size = 28 [set Nradius 3]
     ask patches [set fitness baseline_fitness]
-    if Mode = "Nonspatial_Pure" OR Mode = "Spatial_Pure" [ask patches [
+    if strategy = "Pure" [ask patches [
         ifelse random-float 1 < initial_propD [set strategy_current "D"] [set strategy_current "C"]]
     ]
-    if Mode = "Spatial_MixedStrategy" [
+    if strategy = "Mixed" [
       ask patches [
         set probD rdnorm_b initial_propD initial_heterogeneity 0 1]
       ask patches [
@@ -67,12 +53,10 @@ end
 to go
   if all? patches [strategy_current = "C"] [stop]
   if all? patches [strategy_current = "D"] [stop]
-  if Mode = "Nonspatial_Pure" [ask patches [play_nonspatial]]
-  if Mode = "Spatial_Pure" OR Mode = "Spatial_MixedStrategy" [ask patches [play_spatial]]
+  ask patches [play]
   tick
-  if Mode = "Nonspatial_Pure" [ask patches [reproduce_nonspatial_pure]]
-  if Mode = "Spatial_Pure" [ask patches [reproduce_spatial_pure]]
-  if Mode = "Spatial_MixedStrategy" [ask patches [reproduce_spatial_mixed]]
+  if strategy = "Pure" [ask patches [reproduce_pure]]
+  if strategy = "Mixed" [ask patches [reproduce_mixed]]
   ask patches [set fitness baseline_fitness set strategy_current strategy_new]
   ask patches [color_patch]
 end
@@ -81,65 +65,27 @@ end
 ;; Help procedures
 ;; ---------------
 
-to play_spatial ; patch
-  let Nghbrs other patches in-radius Nradius
-  let local_propC count Nghbrs with [strategy_current = "C"] / (count Nghbrs)
-  let local_propD count Nghbrs with [strategy_current = "D"] / (count Nghbrs)
-  if Game_Type = "Prisoner's Dilemma" [
-    ifelse strategy_current = "C" [set fitness fitness + local_propC * benefit - cost] [set fitness fitness + local_propC * benefit]
-    ]
-  if Game_Type = "Hawk-Dove" [
-    ifelse strategy_current = "C" [set fitness fitness + (0.5 * local_propC * cost + benefit - cost)] [set fitness fitness + local_propC * benefit]
-    ]
-end
-
-to play_nonspatial
-  let propC count patches with [strategy_current = "C"] / (count patches)
-  let propD count patches with [strategy_current = "D"] / (count patches)
-  if Game_Type = "Prisoner's Dilemma" [ 
-  ifelse strategy_current = "C" [set fitness fitness + propC * benefit - cost] [set fitness fitness + propC * benefit]
-  ]
-  if Game_Type = "Hawk-Dove" [
-  ifelse strategy_current = "C" [set fitness fitness + ((0.5 * propC * cost) + benefit - cost)] [set fitness fitness + propC * benefit]
-  ]
+to play ; patch
+  let local_propC count neighbors with [strategy_current = "C"] / (count neighbors)
+  let local_propD count neighbors with [strategy_current = "D"] / (count neighbors)
+  ifelse strategy_current = "C" [set fitness fitness + (0.5 * (benefit - cost + local_propD * benefit - local_propD * cost))] [set fitness fitness + local_propC * benefit]
 end
 
 
-
-
-to reproduce_nonspatial_pure
-  let fit_defect (sum [fitness] of patches with [strategy_current = "D"]) / (sum [fitness] of patches)
-  ifelse random-float 1 < fit_defect [set strategy_new "D"] [set strategy_new "C"]
-end
-
-
-
-to reproduce_spatial_pure ; patch
+to reproduce_pure ; patch
   set strategy_new strategy_current
-  let competitor one-of other patches in-radius Nradius
-  if Game_Type = "Prisoner's Dilemma" [
-    set change_prob ([fitness] of competitor - fitness) / (benefit + cost)
-  ]
-  if Game_Type = "Hawk-Dove" [
-    set change_prob ([fitness] of competitor - fitness) / (benefit)
-  ]
+  let competitor one-of neighbors
+  set change_prob ([fitness] of competitor - fitness) / (benefit)
   if change_prob > 0 [
     if random-float 1 < change_prob [set strategy_new [strategy_current] of competitor]
   ]
 end
 
 
-
-to reproduce_spatial_mixed ; patch
-  let competitor one-of other patches in-radius Nradius
-  if Game_Type = "Prisoner's Dilemma" AND payoff_assessment = "linear_without_error" [
-    set change_prob ([fitness] of competitor - fitness) / (benefit + cost)
-  ]
-  if Game_Type = "Hawk-Dove" AND payoff_assessment = "linear_without_error" [
-    set change_prob ([fitness] of competitor - fitness) / (benefit)
-  ]
-  if payoff_assessment = "nonlinear_with_error" [
-    set change_prob (1 + exp(-([fitness] of competitor - fitness) / 0.1))^(-1)]
+to reproduce_mixed ; patch
+  let competitor one-of neighbors
+  if payoff_assessment = "linear_without_error" [set change_prob ([fitness] of competitor - fitness) / (benefit)]
+  if payoff_assessment = "nonlinear_with_error" [set change_prob (1 + exp(-([fitness] of competitor - fitness) / 0.1))^(-1)]
   if change_prob > 0 [
     if random-float 1 < change_prob [set probD [probD] of competitor]
   ]
@@ -151,19 +97,15 @@ end
 to color_patch ; patch
   ifelse strategy_current = "C" [set pcolor blue] [set pcolor red]
 end
-
-
-
-
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
-230
-628
-669
+228
+23
+538
+354
 -1
 -1
-8.0
+6.0
 1
 10
 1
@@ -174,9 +116,9 @@ GRAPHICS-WINDOW
 1
 1
 0
-50
+49
 0
-50
+49
 1
 1
 1
@@ -184,10 +126,10 @@ ticks
 30.0
 
 INPUTBOX
-31
-33
-192
-93
+32
+48
+193
+108
 benefit
 1
 1
@@ -195,10 +137,10 @@ benefit
 Number
 
 INPUTBOX
-29
-193
-190
-253
+30
+208
+191
+268
 baseline_fitness
 0
 1
@@ -206,10 +148,10 @@ baseline_fitness
 Number
 
 SLIDER
-21
-284
-193
-317
+27
+300
+199
+333
 initial_propD
 initial_propD
 0
@@ -221,10 +163,10 @@ NIL
 HORIZONTAL
 
 BUTTON
-26
-613
-99
-646
+30
+371
+103
+404
 NIL
 setup
 NIL
@@ -238,10 +180,10 @@ NIL
 1
 
 BUTTON
-116
-613
-179
-646
+137
+371
+200
+404
 NIL
 go
 T
@@ -255,10 +197,10 @@ NIL
 1
 
 PLOT
-646
-31
-1004
-292
+565
+28
+923
+289
 Frequency of strategies
 Time
 Frequency
@@ -274,10 +216,10 @@ PENS
 "Defectors" 1.0 0 -2674135 true "" "plot count patches with [strategy_current = \"D\"] / (count patches)"
 
 PLOT
-646
-303
-1006
-564
+563
+304
+923
+565
 Fitness
 Time
 Mean fitness
@@ -294,10 +236,10 @@ PENS
 "Defectors" 1.0 0 -2674135 true "" "plot mean [fitness] of patches with [strategy_current = \"D\"]"
 
 INPUTBOX
-30
-112
-191
-172
+31
+127
+192
+187
 cost
 0.1
 1
@@ -305,51 +247,38 @@ cost
 Number
 
 CHOOSER
-217
-33
-366
-78
-Game_Type
-Game_Type
-"Prisoner's Dilemma" "Hawk-Dove"
+29
+435
+167
+480
+strategy
+strategy
+"Mixed" "Pure"
 0
 
-CHOOSER
-215
-168
-388
-213
-Mode
-Mode
-"Nonspatial_Pure" "Spatial_Pure" "Spatial_MixedStrategy"
-1
-
-CHOOSER
-216
-101
-365
-146
-Neighborhood_size
-Neighborhood_size
-4 8 12 24 28
-1
-
-MONITOR
-646
-578
-758
-623
-Population Size
-max-pxcor * max-pycor
-17
-1
-11
+PLOT
+227
+376
+539
+561
+Average ProbD
+NIL
+NIL
+0.0
+1.0
+0.0
+1.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot mean [probD] of patches"
 
 SLIDER
-20
-347
-192
-380
+28
+508
+200
+541
 mutation_size
 mutation_size
 0
@@ -361,10 +290,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-20
-396
-192
-429
+26
+569
+229
+602
 initial_heterogeneity
 initial_heterogeneity
 0
@@ -375,29 +304,11 @@ initial_heterogeneity
 NIL
 HORIZONTAL
 
-PLOT
-401
-31
-631
-215
-Average ProbD
-NIL
-NIL
-0.0
-10.0
-0.0
-1.0
-true
-false
-"" ""
-PENS
-"default" 1.0 0 -16777216 true "" "plot mean [probD] of patches"
-
 SLIDER
-18
-458
-194
-491
+30
+623
+233
+656
 mutation_probability
 mutation_probability
 0
@@ -409,10 +320,10 @@ NIL
 HORIZONTAL
 
 CHOOSER
-21
-517
-193
-562
+24
+679
+219
+724
 payoff_assessment
 payoff_assessment
 "linear_without_error" "nonlinear_with_error"
