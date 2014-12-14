@@ -11,7 +11,7 @@ library(data.table)
 
 #filename <- "Task1_HD_nonspatial_nb8"
 #filename <- "Task1_HD_spatial_nb8"
-filename <- "Task1_PD_nonspatial_nb8" #### corupt! Too low initial_propD!
+#filename <- "Task1_PD_nonspatial_nb8" #### corupt! Too low initial_propD!
 #filename <- "Task1_PD_spatial_nb8"
 #filename <- "Task2_HD_spatial_nb4"
 #filename <- "Task2_HD_spatial_nb12"
@@ -20,6 +20,7 @@ filename <- "Task1_PD_nonspatial_nb8" #### corupt! Too low initial_propD!
 #filename <- "Task2_PD_spatial_nb12"
 #filename <- "Task2_PD_spatial_nb24"
 #filename <- "Task3_HD_spatial_nb8_pure_10000"
+filename <- "Task3_HD_spatial_nb8_mixed_10000_new"
 
 ### needs separate treatment --> in line "setnames", change ncol(exp) to ncol(exp)-1
 #filename <- "Task3_HD_spatial_nb8_mixed_10000"
