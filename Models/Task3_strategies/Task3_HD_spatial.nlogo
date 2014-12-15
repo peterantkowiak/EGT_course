@@ -9,11 +9,14 @@
 ; baseline_fitness
 ; initial_propD: Initial proportion of defectors
 ; strategy
-; mutation_rate: standard deviation of the random normal distribution generating the mutations
+; mutation_size: standard deviation of the random normal distribution generating the mutations
 ; initial_heterogeneity: standard deviation of the random normal distribution generating the initial population
+; mutation_probability: probability that a mutation occurs
+; payoff_assessment: two different methods to calculate change_prob (z in the paper): a linear function or a nonlinear function including an error term
 
 
-patches-own [strategy_current strategy_new fitness probD]
+
+patches-own [strategy_current strategy_new fitness probD change_prob]
 ; strategy-current: P(C) - the propability that the cell plays C
 ; strategy-new: strategy of newly produced individual (after reproduction)
 ; fitness: baseline fitness and payoff of the game
@@ -72,7 +75,7 @@ end
 to reproduce_pure ; patch
   set strategy_new strategy_current
   let competitor one-of neighbors
-  let change_prob ([fitness] of competitor - fitness) / (benefit)
+  set change_prob ([fitness] of competitor - fitness) / (benefit)
   if change_prob > 0 [
     if random-float 1 < change_prob [set strategy_new [strategy_current] of competitor]
   ]
@@ -81,11 +84,12 @@ end
 
 to reproduce_mixed ; patch
   let competitor one-of neighbors
-  let change_prob ([fitness] of competitor - fitness) / (benefit)
-  if change_prob <= 0 [set probD rdnorm_b probD mutation_rate 0 1]
+  if payoff_assessment = "linear_without_error" [set change_prob ([fitness] of competitor - fitness) / (benefit)]
+  if payoff_assessment = "nonlinear_with_error" [set change_prob (1 + exp(-([fitness] of competitor - fitness) / 0.1))^(-1)]
   if change_prob > 0 [
-    if random-float 1 < change_prob [set probD rdnorm_b [probD] of competitor mutation_rate 0 1]
+    if random-float 1 < change_prob [set probD [probD] of competitor]
   ]
+  if random-float 1 < mutation_probability [set probD rdnorm_b probD mutation_size 0 1]
   ifelse random-float 1 < probD [set strategy_new "D"] [set strategy_new "C"]
 end
 
@@ -97,8 +101,8 @@ end
 GRAPHICS-WINDOW
 228
 23
-538
-354
+544
+360
 -1
 -1
 6.0
@@ -112,9 +116,9 @@ GRAPHICS-WINDOW
 1
 1
 0
-49
+50
 0
-49
+50
 1
 1
 1
@@ -275,8 +279,8 @@ SLIDER
 508
 200
 541
-mutation_rate
-mutation_rate
+mutation_size
+mutation_size
 0
 0.1
 0.002
@@ -299,6 +303,31 @@ initial_heterogeneity
 1
 NIL
 HORIZONTAL
+
+SLIDER
+30
+623
+233
+656
+mutation_probability
+mutation_probability
+0
+1
+0.01
+0.01
+1
+NIL
+HORIZONTAL
+
+CHOOSER
+24
+679
+219
+724
+payoff_assessment
+payoff_assessment
+"linear_without_error" "nonlinear_with_error"
+1
 
 @#$#@#$#@
 ## WHAT IS IT?

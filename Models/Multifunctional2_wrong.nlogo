@@ -89,7 +89,7 @@ to play_spatial ; patch
     ifelse strategy_current = "C" [set fitness fitness + local_propC * benefit - cost] [set fitness fitness + local_propC * benefit]
     ]
   if Game_Type = "Hawk-Dove" [
-    ifelse strategy_current = "C" [set fitness fitness + (0.5 * local_propC * cost + benefit - cost)] [set fitness fitness + local_propC * benefit]
+    ifelse strategy_current = "C" [set fitness fitness + (0.5 * (benefit - cost + local_propD * benefit - local_propD * cost))] [set fitness fitness + local_propC * benefit]
     ]
 end
 

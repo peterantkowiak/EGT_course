@@ -25,7 +25,7 @@ Globals[
 
 
 
-patches-own [strategy_current strategy_new fitness change_prob probD]
+patches-own [strategy_current strategy_new fitness change_prob probD strat_P_cur strat_P_new]
 ; strategy-current: either C (cooperate) or D (defect)
 ; strategy-new: strategy of newly produced individual (after reproduction)
 ; fitness: baseline fitness and payoff of the game
@@ -51,14 +51,13 @@ to setup
     if Neighborhood_size = 24 [set Nradius 2 * sqrt 2]
     if Neighborhood_size = 28 [set Nradius 3]
     ask patches [set fitness baseline_fitness]
+    let strat_exp (1 - (cost / (2 * benefit - cost))) ; expected strategy calculated from the cost / benefit ratio
     if Mode = "Nonspatial_Pure" OR Mode = "Spatial_Pure" [ask patches [
         ifelse random-float 1 < initial_propD [set strategy_current "D"] [set strategy_current "C"]]
     ]
     if Mode = "Spatial_MixedStrategy" [
       ask patches [
-        set probD rdnorm_b initial_propD initial_heterogeneity 0 1]
-      ask patches [
-        ifelse random-float 1 < probD [set strategy_current "D"] [set strategy_current "C"]]
+        set strat_P_cur rdnorm_b strat_exp initial_heterogeneity 0 1]
         ]
     ask patches [color_patch]
     reset-ticks
@@ -72,8 +71,11 @@ to go
   tick
   if Mode = "Nonspatial_Pure" [ask patches [reproduce_nonspatial_pure]]
   if Mode = "Spatial_Pure" [ask patches [reproduce_spatial_pure]]
-  if Mode = "Spatial_MixedStrategy" [ask patches [reproduce_spatial_mixed]]
-  ask patches [set fitness baseline_fitness set strategy_current strategy_new]
+  if Mode = "Spatial_MixedStrategy" [
+    ask patches [reproduce_spatial_mixed]
+    ask patches [mutate]
+    ]
+  ask patches [set fitness baseline_fitness set strategy_current strategy_new set strat_P_cur strat_P_new]
   ask patches [color_patch]
 end
 
@@ -83,13 +85,19 @@ end
 
 to play_spatial ; patch
   let Nghbrs other patches in-radius Nradius
-  let local_propC count Nghbrs with [strategy_current = "C"] / (count Nghbrs)
-  let local_propD count Nghbrs with [strategy_current = "D"] / (count Nghbrs)
+  
+  let neighbor_strat mean [strat_P_cur] of Nghbrs
+  
+  ;let local_propC count Nghbrs with [strategy_current = "C"] / (count Nghbrs)
+  ;let local_propD count Nghbrs with [strategy_current = "D"] / (count Nghbrs)
+  
   if Game_Type = "Prisoner's Dilemma" [
-    ifelse strategy_current = "C" [set fitness fitness + local_propC * benefit - cost] [set fitness fitness + local_propC * benefit]
+    set fitness fitness + (strat_P_cur * neighbor_strat * benefit - cost) + ((1 - strat_P_cur) * neighbor_strat * benefit)
+    ;ifelse strategy_current = "C" [set fitness fitness + local_propC * benefit - cost] [set fitness fitness + local_propC * benefit]
     ]
   if Game_Type = "Hawk-Dove" [
-    ifelse strategy_current = "C" [set fitness fitness + (0.5 * local_propC * cost + benefit - cost)] [set fitness fitness + local_propC * benefit]
+    set fitness fitness + strat_P_cur * neighbor_strat * (benefit - (0.5 * cost)) + strat_P_cur * (1 - neighbor_strat) * (benefit - cost) + (1 - strat_P_cur) * neighbor_strat * benefit
+    ;ifelse strategy_current = "C" [set fitness fitness + (0.5 * (benefit - cost + local_propD * benefit - local_propD * cost))] [set fitness fitness + local_propC * benefit]
     ]
 end
 
@@ -139,20 +147,26 @@ to reproduce_spatial_mixed ; patch
     set change_prob ([fitness] of competitor - fitness) / (benefit)
   ]
   if payoff_assessment = "nonlinear_with_error" [
-    set change_prob (1 + exp(-([fitness] of competitor - fitness) / 0.1))^(-1)]
-  if change_prob > 0 [
-    if random-float 1 < change_prob [set probD [probD] of competitor]
-  ]
-  if random-float 1 < mutation_probability [set probD rdnorm_b probD mutation_size 0 1]
-  ifelse random-float 1 < probD [set strategy_new "D"] [set strategy_new "C"]
+    let z ([fitness] of competitor - fitness)
+    set change_prob ((1 + exp( - z / 0.1)) ^ -1)
+    ]
+  ;if change_prob > 0 [
+  ifelse random-float 1 < change_prob [set strat_P_new [strat_P_cur] of competitor] [set strat_P_new strat_P_cur]
+  ;]
+end
+
+to mutate
+  if random-float 1 < mutation_probability [set strat_P_cur rdnorm_b strat_P_cur mutation_size 0 1]
 end
 
 
 to color_patch ; patch
-  ifelse strategy_current = "C" [set pcolor blue] [set pcolor red]
+  ifelse Mode = "Spatial_MixedStrategy" [
+    ifelse random-float 1 < strat_P_cur [set pcolor blue] [set pcolor red]
+    ] [
+    ifelse strategy_current = "C" [set pcolor blue] [set pcolor red]
+  ]
 end
-
-
 
 
 @#$#@#$#@
@@ -270,8 +284,8 @@ true
 true
 "" ""
 PENS
-"Cooperators" 1.0 0 -13345367 true "" "plot count patches with [strategy_current = \"C\"] / (count patches)"
-"Defectors" 1.0 0 -2674135 true "" "plot count patches with [strategy_current = \"D\"] / (count patches)"
+"Cooperators" 1.0 0 -13345367 true "" "plot count patches with [pcolor = blue] / (count patches)"
+"Defectors" 1.0 0 -2674135 true "" "plot count patches with [pcolor = red] / (count patches)"
 
 PLOT
 646
@@ -290,8 +304,8 @@ true
 "" ""
 PENS
 "Population" 1.0 0 -16777216 true "" "plot mean [fitness] of patches"
-"Cooperators" 1.0 0 -13345367 true "" "plot mean [fitness] of patches with [strategy_current = \"C\"]"
-"Defectors" 1.0 0 -2674135 true "" "plot mean [fitness] of patches with [strategy_current = \"D\"]"
+"Cooperators" 1.0 0 -13345367 true "" "plot mean [fitness] of patches with [pcolor = blue]"
+"Defectors" 1.0 0 -2674135 true "" "plot mean [fitness] of patches with [pcolor = red]"
 
 INPUTBOX
 30
@@ -312,7 +326,7 @@ CHOOSER
 Game_Type
 Game_Type
 "Prisoner's Dilemma" "Hawk-Dove"
-0
+1
 
 CHOOSER
 215
@@ -322,7 +336,7 @@ CHOOSER
 Mode
 Mode
 "Nonspatial_Pure" "Spatial_Pure" "Spatial_MixedStrategy"
-1
+2
 
 CHOOSER
 216
@@ -380,7 +394,7 @@ PLOT
 31
 631
 215
-Average ProbD
+Average strat_P_cur
 NIL
 NIL
 0.0
@@ -391,7 +405,7 @@ true
 false
 "" ""
 PENS
-"default" 1.0 0 -16777216 true "" "plot mean [probD] of patches"
+"default" 1.0 0 -16777216 true "" "plot mean [strat_P_cur] of patches"
 
 SLIDER
 18
@@ -416,7 +430,7 @@ CHOOSER
 payoff_assessment
 payoff_assessment
 "linear_without_error" "nonlinear_with_error"
-0
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
