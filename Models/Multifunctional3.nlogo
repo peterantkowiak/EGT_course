@@ -25,7 +25,7 @@ Globals[
 
 
 
-patches-own [strategy_current strategy_new fitness change_prob probD strat_P]
+patches-own [strategy_current strategy_new fitness change_prob probD strat_P_cur strat_P_new]
 ; strategy-current: either C (cooperate) or D (defect)
 ; strategy-new: strategy of newly produced individual (after reproduction)
 ; fitness: baseline fitness and payoff of the game
@@ -57,7 +57,7 @@ to setup
     ]
     if Mode = "Spatial_MixedStrategy" [
       ask patches [
-        set strat_P rdnorm_b strat_exp initial_heterogeneity 0 1]
+        set strat_P_cur rdnorm_b strat_exp initial_heterogeneity 0 1]
         ]
     ask patches [color_patch]
     reset-ticks
@@ -71,8 +71,11 @@ to go
   tick
   if Mode = "Nonspatial_Pure" [ask patches [reproduce_nonspatial_pure]]
   if Mode = "Spatial_Pure" [ask patches [reproduce_spatial_pure]]
-  if Mode = "Spatial_MixedStrategy" [ask patches [reproduce_spatial_mixed]]
-  ask patches [set fitness baseline_fitness set strategy_current strategy_new]
+  if Mode = "Spatial_MixedStrategy" [
+    ask patches [reproduce_spatial_mixed]
+    ask patches [mutate]
+    ]
+  ask patches [set fitness baseline_fitness set strategy_current strategy_new set strat_P_cur strat_P_new]
   ask patches [color_patch]
 end
 
@@ -83,17 +86,17 @@ end
 to play_spatial ; patch
   let Nghbrs other patches in-radius Nradius
   
-  let neighbor_strat mean [strat_P] of Nghbrs
+  let neighbor_strat mean [strat_P_cur] of Nghbrs
   
   ;let local_propC count Nghbrs with [strategy_current = "C"] / (count Nghbrs)
   ;let local_propD count Nghbrs with [strategy_current = "D"] / (count Nghbrs)
   
   if Game_Type = "Prisoner's Dilemma" [
-    set fitness fitness + (strat_P * neighbor_strat * benefit - cost) + ((1 - strat_P) * neighbor_strat * benefit)
+    set fitness fitness + (strat_P_cur * neighbor_strat * benefit - cost) + ((1 - strat_P_cur) * neighbor_strat * benefit)
     ;ifelse strategy_current = "C" [set fitness fitness + local_propC * benefit - cost] [set fitness fitness + local_propC * benefit]
     ]
   if Game_Type = "Hawk-Dove" [
-    set fitness fitness + strat_P * neighbor_strat * (benefit - (0.5 * cost)) + strat_P * (1 - neighbor_strat) * (benefit - cost) + (1 - strat_P) * neighbor_strat * benefit
+    set fitness fitness + strat_P_cur * neighbor_strat * (benefit - (0.5 * cost)) + strat_P_cur * (1 - neighbor_strat) * (benefit - cost) + (1 - strat_P_cur) * neighbor_strat * benefit
     ;ifelse strategy_current = "C" [set fitness fitness + (0.5 * (benefit - cost + local_propD * benefit - local_propD * cost))] [set fitness fitness + local_propC * benefit]
     ]
 end
@@ -144,22 +147,26 @@ to reproduce_spatial_mixed ; patch
     set change_prob ([fitness] of competitor - fitness) / (benefit)
   ]
   if payoff_assessment = "nonlinear_with_error" [
-    set change_prob (1 + exp(-([fitness] of competitor - fitness) / 0.1))^(-1)]
+    let z ([fitness] of competitor - fitness)
+    set change_prob ((1 + exp( - z / 0.1)) ^ -1)
+    ]
   ;if change_prob > 0 [
-    if random-float 1 < change_prob [set strat_P [strat_P] of competitor]
+  ifelse random-float 1 < change_prob [set strat_P_new [strat_P_cur] of competitor] [set strat_P_new strat_P_cur]
   ;]
-  if random-float 1 < mutation_probability [set strat_P rdnorm_b strat_P mutation_size 0 1]
+end
+
+to mutate
+  if random-float 1 < mutation_probability [set strat_P_cur rdnorm_b strat_P_cur mutation_size 0 1]
 end
 
 
 to color_patch ; patch
   ifelse Mode = "Spatial_MixedStrategy" [
-    ifelse random-float 1 < strat_P [set pcolor blue] [set pcolor red]
+    ifelse random-float 1 < strat_P_cur [set pcolor blue] [set pcolor red]
     ] [
     ifelse strategy_current = "C" [set pcolor blue] [set pcolor red]
   ]
 end
-
 
 
 @#$#@#$#@
@@ -387,7 +394,7 @@ PLOT
 31
 631
 215
-Average ProbD
+Average strat_P_cur
 NIL
 NIL
 0.0
@@ -398,7 +405,7 @@ true
 false
 "" ""
 PENS
-"default" 1.0 0 -16777216 true "" "plot mean [strat_P] of patches"
+"default" 1.0 0 -16777216 true "" "plot mean [strat_P_cur] of patches"
 
 SLIDER
 18
