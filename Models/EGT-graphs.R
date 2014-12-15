@@ -20,7 +20,8 @@ library(data.table)
 #filename <- "Task2_PD_spatial_nb12"
 #filename <- "Task2_PD_spatial_nb24"
 #filename <- "Task3_HD_spatial_nb8_pure_10000"
-filename <- "Task3_HD_spatial_nb8_mixed_10000_new"
+#filename <- "Task3_HD_spatial_nb8_mixed_10000_new"
+filename <- "Task3_HD_spatial_nb8_mixed_10000_correct"
 
 ### needs separate treatment --> in line "setnames", change ncol(exp) to ncol(exp)-1
 #filename <- "Task3_HD_spatial_nb8_mixed_10000"
@@ -35,7 +36,9 @@ exp <- read.csv(paste0(directory,filename,".csv",collapse=""), , head=T, skip=6,
 
 setnames(exp,ncol(exp),"propC")
 
-exp.s <- data.table(subset(exp, select = c(X.run.number.,benefit,cost,initial_propD,X.step.,propC)), key="X.run.number.")
+
+exp.s <- data.table(subset(exp, select = c(X.run.number.,benefit,cost,X.step.,propC)), key="X.run.number.")
+#exp.s <- data.table(subset(exp, select = c(X.run.number.,benefit,cost,initial_propD,X.step.,propC)), key="X.run.number.")
 #exp.s
 
 exp.s$r <- round(exp.s$cost/(2-exp.s$cost), digits = 3) 

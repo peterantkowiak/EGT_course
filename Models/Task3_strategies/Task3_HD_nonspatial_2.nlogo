@@ -15,7 +15,7 @@
 
 
 
-patches-own [strategy_current strategy_new fitness strat_P_cur strat_P_new change_prob]
+patches-own [strategy_current strategy_new fitness strat_P change_prob]
 ; strat_P: inherited strategy = probability to play "C"
 ; fitness: baseline fitness and payoff of the game
 
@@ -41,7 +41,7 @@ to setup
     ]
     if strategy = "Mixed" [
       ask patches [
-        set strat_P_cur rdnorm_b strat_exp initial_heterogeneity 0 1]
+        set strat_P rdnorm_b strat_exp initial_heterogeneity 0 1]
         ]
     ask patches [color_patch]
     reset-ticks
@@ -54,10 +54,7 @@ to go
   tick
   if strategy = "Pure" [ask patches [reproduce_pure]]
   if strategy = "Mixed" [ask patches [reproduce_mixed]]
-  ask patches [set fitness baseline_fitness]
-  ask patches [set strategy_current strategy_new]
-  ask patches [set strat_P_cur strat_P_new]
-  ask patches [mutate]
+  ask patches [set fitness baseline_fitness set strategy_current strategy_new]
   ask patches [color_patch]
 end
 
@@ -66,8 +63,8 @@ end
 ;; ---------------
 
 to play ; patch
-  let neighbor_strat mean [strat_P_cur] of neighbors
-  set fitness fitness + strat_P_cur * neighbor_strat * (benefit - (0.5 * cost)) + strat_P_cur * (1 - neighbor_strat) * (benefit - cost) + (1 - strat_P_cur) * neighbor_strat * benefit
+  let pop_strat mean [strat_P] of patches
+  set fitness fitness + strat_P * pop_strat * (benefit - (0.5 * cost)) + strat_P * (1 - pop_strat) * (benefit - cost) + (1 - strat_P) * pop_strat * benefit
   ;set fitness fitness + strat_P * (0.5 * (benefit - cost + strat_P * benefit - neighbor_strat * cost)) + (strat_P * (1 - neighbor_strat) * benefit)
   ;ifelse strategy_current = "C" [set fitness fitness + (0.5 * (benefit - cost + local_propD * benefit - local_propD * cost))] [set fitness fitness + local_propC * benefit]
 end
@@ -84,23 +81,19 @@ end
 
 
 to reproduce_mixed ; patch
-  let competitor one-of neighbors
-  if payoff_assessment = "linear_without_error" [set change_prob ([fitness] of competitor - fitness) / (benefit)]
-  if payoff_assessment = "nonlinear_with_error" [
-    let z ([fitness] of competitor - fitness)
-    set change_prob ((1 + exp( - z / 0.1)) ^ -1)
-    ]
+  ;let competitor one-of neighbors
+  let fitness_diff ((mean [fitness] of other patches) - fitness)
+  if payoff_assessment = "linear_without_error" [set change_prob (fitness_diff / benefit)]
+  if payoff_assessment = "nonlinear_with_error" [set change_prob (1 + exp(- fitness_diff / 0.1)) ^(-1)]
   ;if change_prob > 0 [
-    ifelse random-float 1 < change_prob [set strat_P_new [strat_P_cur] of competitor] [set strat_P_new strat_P_cur]
+    if random-float 1 < change_prob [set strat_P mean [strat_P] of other patches]
   ;]
+  if random-float 1 < mutation_probability [set strat_P rdnorm_b strat_P mutation_size 0 1]
 end
 
-to mutate
-  if random-float 1 < mutation_probability [set strat_P_cur rdnorm_b strat_P_cur mutation_size 0 1]
-end
 
 to color_patch ; patch
-  ifelse random-float 1 < strat_P_cur [set pcolor blue] [set pcolor red]
+  ifelse random-float 1 < strat_P [set pcolor blue] [set pcolor red]
 end
 
 @#$#@#$#@
@@ -261,7 +254,7 @@ true
 false
 "" ""
 PENS
-"default" 1.0 0 -16777216 true "" "plot mean [strat_P_cur] of patches"
+"default" 1.0 0 -16777216 true "" "plot mean [strat_P] of patches"
 
 SLIDER
 28
