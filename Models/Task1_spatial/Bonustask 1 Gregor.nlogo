@@ -201,7 +201,7 @@ true
 true
 "" ""
 PENS
-"Cooperators" 1.0 0 -13345367 true "" "plot count players with [strategy = \"C\" ] / popsize"
+"Cooperators" 1.0 0 -13345367 true "" "plot (count players with [strategy = \"C\"] + count players with [strategy = \"CC\"]) / popsize"
 "Defectors" 1.0 0 -2674135 true "" "plot count players with [strategy = \"D\"] / popsize"
 "pen-2" 1.0 0 -7500403 true "" "plot count players with [strategy = \"CC\"] / popsize"
 
@@ -215,26 +215,6 @@ count players with [strategy = \"D\"]
 17
 1
 11
-
-PLOT
-639
-51
-1031
-342
-Fitness
-Time
-Mean fitness
-0.0
-10.0
-0.0
-10.0
-true
-true
-"" ""
-PENS
-"Population" 1.0 0 -16777216 true "" "plot mean [fitness] of players"
-"Cooperators" 1.0 0 -13345367 true "" "plot mean [fitness] of players with [strategy = \"C\"]"
-"Defectors" 1.0 0 -2674135 true "" "plot mean [fitness] of players with [strategy = \"D\"]"
 
 @#$#@#$#@
 ## WHAT IS IT?
