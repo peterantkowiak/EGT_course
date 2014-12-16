@@ -20,12 +20,20 @@ library(data.table)
 #6#filename <- "Task2_HD_spatial_nb12"
 #7#filename <- "Task2_HD_spatial_nb24"
 #8#filename <- "Task2_PD_spatial_nb4"
-#9#filename <- "Task2_PD_spatial_nb12"
-#10#filename <- "Task2_PD_spatial_nb24"
-#11#filename <- "Task3_HD_spatial_nb8_pure_10000"
-#12#filename <- "Task3_HD_spatial_nb8_mixed_10000_incorrect"
-#13#filename <- "Task3_HD_spatial_nb8_mixed_10000_final"
+#9#filename <- "Task2_PD_spatial_nb8_lowR"
+#10#filename <- "Task2_PD_spatial_nb12"
+#11#filename <- "Task2_PD_spatial_nb24"
+#12#filename <- "Task3_HD_spatial_nb8_pure_10000"
+#NA#filename <- "Task3_HD_spatial_nb8_mixed_10000_incorrect"
+#13#filename <- "Task3_HD_spatial_nb4_mixed_10000"
+#14#filename <- "Task3_HD_spatial_nb8_mixed_10000"
+#15#filename <- "Task3_HD_spatial_nb12_mixed_10000"
 
+
+
+########################################################################################
+# autoplot
+########################################################################################
 
 
 autoplot <- function(files, which, directory){
@@ -68,31 +76,154 @@ for (i in 1:nrow(r_levels)){
 ########### plot ######################
 
 
-plot(r_levels[,1], r_levels[,3], type = "p", pch=19, col="red", las=1, ylab="Frequency of cooperation  [ t = 5000, i = 10 ]", xlab="cost / benefit ratio r", main=paste(substr(filename,7, nchar(filename))), ylim = c(0,1))
+plot(r_levels[,1], r_levels[,3], type = "p", pch=19, col="red", las=1, ylab="frequency of cooperation", xlab="cost / benefit ratio r", main=paste(substr(filename,7, nchar(filename))), ylim = c(0,1))
 grid()
 arrows(r_levels[,1], r_levels[,3]-r_levels[,5], r_levels[,1], r_levels[,3]+r_levels[,5], length=0.05, angle=90, code=3)
 # Error bars indicating the standard error with a 95 % confidence interval
 
 if(substr(filename,7,8) == "HD") {
-  abline(1,-1,lty=2) }  # HD nonspatial pure and mixed
+  abline(1,-1,lty=2)}  # HD nonspatial pure and mixed
 if(substr(filename,7,8) == "PD") {
-  abline(0,0,lty=2) } # PD nonspatial pure
+  PD_nonsp_x <- seq(0, 1, 0.05) 
+  PD_nonsp_y <- c(0.9908, rep(0,19), 0.5)
+  lines(PD_nonsp_x,PD_nonsp_y,lty=2)}
+  #abline(0,0,lty=2)  # PD nonspatial pure
+}}
 
-#lines(r_levels[,1],1 - r_levels[,2]) # ???
 
-  }
-}
 
 ###########################################
 
 
-files <- c("Task1_HD_nonspatial","Task1_HD_spatial_nb8","Task1_PD_nonspatial","Task1_PD_spatial_nb8","Task2_HD_spatial_nb4","Task2_HD_spatial_nb12","Task2_HD_spatial_nb24","Task2_PD_spatial_nb4","Task2_PD_spatial_nb12","Task2_PD_spatial_nb24","Task3_HD_spatial_nb8_pure_10000","Task3_HD_spatial_nb8_mixed_10000_final")
+files <- c(
+  "Task1_HD_nonspatial",
+  "Task1_HD_spatial_nb8",
+  "Task1_PD_nonspatial",
+  "Task1_PD_spatial_nb8",
+  "Task2_HD_spatial_nb4",
+  "Task2_HD_spatial_nb12",
+  "Task2_HD_spatial_nb24",
+  "Task2_PD_spatial_nb4",
+  "Task2_PD_spatial_nb4_lowR",
+  "Task2_PD_spatial_nb8_lowR",
+  "Task2_PD_spatial_nb12",
+  "Task2_PD_spatial_nb24",
+  "Task3_HD_spatial_nb8_pure_10000",
+  "Task3_HD_spatial_nb4_mixed_10000",
+  "Task3_HD_spatial_nb8_mixed_10000",
+  "Task3_HD_spatial_nb12_mixed_10000"
+  )
 
 directory <- "/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/ResultsAndRcode/"
 
-which <- c(5:10)
+which <- c(8)
 
 
-par(mfrow=c(2,3))
+par(mfrow=c(1,1))
 
 autoplot(files,which,directory)
+
+
+
+
+########################################################################################
+# several in one plot
+########################################################################################
+
+multiplot <- function(files, which, directory){
+  
+firstfiletoplot <-files[which[1]]
+otherfilestoplot <-files[which[2:length(which)]] 
+
+for (h in firstfiletoplot){
+    
+filename <- h
+exp <- read.csv(paste0(directory,filename,".csv",collapse=""), , head=T, skip=6, dec=".")
+setnames(exp,ncol(exp),"propC")
+exp.s <- data.table(subset(exp, select = c(X.run.number.,benefit,cost,X.step.,propC)), key="X.run.number.")
+exp.s$r <- round(exp.s$cost/(2-exp.s$cost), digits = 3) 
+r_levels <- matrix(nrow = length(unique(exp.s$r)), ncol = 5, dimnames = list(as.character(unique(exp.s$r)),c("r","cost","mean","dev","serror")))
+r_levels[,1] <- unique(exp.s$r)
+r_levels[,2] <- (2*r_levels[,1])/(1+r_levels[,1])
+     
+########### calculate means ###########  
+for (i in 1:nrow(r_levels)){
+  j <- r_levels[i,1]
+  rws <- subset(exp.s, r == j)
+  r_levels[i,3] <- mean(rws$propC)
+  r_levels[i,4] <- sd(rws$propC)
+  r_levels[i,5] <- qnorm(0.975)*sd(rws$propC)/sqrt(length(rws$propC))
+  rm(i,j,rws)
+  }
+        
+########### plot ###################### 
+plot(r_levels[,1], r_levels[,3], type = "p", pch=19, col="red", las=1, ylab="frequency of cooperation", xlab="cost / benefit ratio r", main=paste(substr(filename,7, nchar(filename))), ylim = c(0,1))
+grid()
+arrows(r_levels[,1], r_levels[,3]-r_levels[,5], r_levels[,1], r_levels[,3]+r_levels[,5], length=0.05, angle=90, code=3)
+if(substr(filename,7,8) == "HD") {
+  abline(1,-1,lty=2)}  # HD nonspatial pure and mixed
+if(substr(filename,7,8) == "PD") {
+  PD_nonsp_x <- seq(0, 1, 0.05) 
+  PD_nonsp_y <- c(0.9908, rep(0,19), 0.5)
+  lines(PD_nonsp_x,PD_nonsp_y,lty=2)}
+    #abline(0,0,lty=2)  # PD nonspatial pure
+}
+
+for (g in 1:length(otherfilestoplot)){
+  
+filename <- otherfilestoplot[g]
+exp <- read.csv(paste0(directory,filename,".csv",collapse=""), , head=T, skip=6, dec=".")
+setnames(exp,ncol(exp),"propC")
+exp.s <- data.table(subset(exp, select = c(X.run.number.,benefit,cost,X.step.,propC)), key="X.run.number.")
+exp.s$r <- round(exp.s$cost/(2-exp.s$cost), digits = 3) 
+r_levels <- matrix(nrow = length(unique(exp.s$r)), ncol = 5, dimnames = list(as.character(unique(exp.s$r)),c("r","cost","mean","dev","serror")))
+r_levels[,1] <- unique(exp.s$r)
+r_levels[,2] <- (2*r_levels[,1])/(1+r_levels[,1])
+  
+########### calculate means ###########  
+for (i in 1:nrow(r_levels)){
+  j <- r_levels[i,1]
+  rws <- subset(exp.s, r == j)
+  r_levels[i,3] <- mean(rws$propC)
+  r_levels[i,4] <- sd(rws$propC)
+  r_levels[i,5] <- qnorm(0.975)*sd(rws$propC)/sqrt(length(rws$propC))
+  rm(i,j,rws)
+}
+  
+########### plot ###################### 
+pchvec <- c(15,18,17)[g]
+colvec <- c("blue","darkgreen","purple")[g]
+points(r_levels[,1], r_levels[,3], type = "p", pch=pchvec, col=paste(colvec), ylim = c(0,1))
+arrows(r_levels[,1], r_levels[,3]-r_levels[,5], r_levels[,1], r_levels[,3]+r_levels[,5], length=0.05, angle=90, code=3)
+  
+
+}
+
+}
+
+par(mfrow=c(1,1))
+
+
+which <- c(3,8,9)
+
+
+multiplot(files,which,directory)
+
+
+########################################################################################
+# pdf export
+########################################################################################
+
+
+pdf(file="/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/task1_4plot.pdf",width=6, height=7)
+par(mfrow=c(2,2))
+autoplot(files,which,directory)
+dev.off()
+
+
+pdf(file="/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/task1_4plot.pdf",width=6, height=7)
+par(mfrow=c(2,2))
+autoplot(files,which,directory)
+dev.off()
+
+
