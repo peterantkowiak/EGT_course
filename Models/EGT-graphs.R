@@ -90,9 +90,9 @@ files <- c("Task1_HD_nonspatial","Task1_HD_spatial_nb8","Task1_PD_nonspatial","T
 
 directory <- "/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/ResultsAndRcode/"
 
-which <- c(5:10)
+which <- c(1:4)
 
 
-par(mfrow=c(2,3))
+par(mfrow=c(2,2))
 
 autoplot(files,which,directory)
