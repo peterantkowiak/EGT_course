@@ -37,7 +37,7 @@ to setup
     ask patches [set fitness baseline_fitness]
     let strat_exp (1 - (cost / (2 * benefit - cost))) ; expected strategy calculated from the cost / benefit ratio
     if strategy = "Pure" [ask patches [
-        ifelse random-float 1 < strat_exp [set strategy_current "D"] [set strategy_current "C"]]
+        ifelse random-float 1 < strat_exp [set strategy_current "C"] [set strategy_current "D"]]
     ]
     if strategy = "Mixed" [
       ask patches [
@@ -50,7 +50,8 @@ end
 to go
   if all? patches [strategy_current = "C"] [stop]
   if all? patches [strategy_current = "D"] [stop]
-  ask patches [play]
+  if strategy = "Pure" [ask patches [play_pure]]
+  if strategy = "Mixed" [ask patches [play_mixed]]
   tick
   if strategy = "Pure" [ask patches [reproduce_pure]]
   if strategy = "Mixed" [ask patches [reproduce_mixed]]
@@ -65,7 +66,15 @@ end
 ;; Help procedures
 ;; ---------------
 
-to play ; patch
+to play_pure ; patch
+  let local_propC count neighbors with [strategy_current = "C"] / (count neighbors)
+  let local_propD count neighbors with [strategy_current = "D"] / (count neighbors)
+  ifelse strategy_current = "C" [set fitness fitness +  (0.5 * local_propC * cost + benefit - cost)] [set fitness fitness + local_propC * benefit]
+  ;ifelse strategy_current = "C" [set fitness fitness + (0.5 * (benefit - cost + local_propD * benefit - local_propD * cost))] [set fitness fitness + local_propC * benefit]
+end
+
+
+to play_mixed ; patch
   let neighbor_strat mean [strat_P_cur] of neighbors
   set fitness fitness + strat_P_cur * neighbor_strat * (benefit - (0.5 * cost)) + strat_P_cur * (1 - neighbor_strat) * (benefit - cost) + (1 - strat_P_cur) * neighbor_strat * benefit
   ;set fitness fitness + strat_P * (0.5 * (benefit - cost + strat_P * benefit - neighbor_strat * cost)) + (strat_P * (1 - neighbor_strat) * benefit)
@@ -100,9 +109,11 @@ to mutate
 end
 
 to color_patch ; patch
-  ifelse random-float 1 < strat_P_cur [set pcolor blue] [set pcolor red]
+  if strategy = "Mixed" [  
+      ifelse random-float 1 < strat_P_cur [set pcolor blue] [set pcolor red]]
+  if strategy = "Pure" [
+      ifelse strategy_current = "C" [set pcolor blue] [set pcolor red]]
 end
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 228
