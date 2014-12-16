@@ -36,7 +36,7 @@ library(data.table)
 ########################################################################################
 
 
-autoplot <- function(files, which, directory){
+autoplot <- function(files, which, directory, conf, nspl){
   filestoplot <-files[which]
   for (h in filestoplot){
 
@@ -78,9 +78,11 @@ for (i in 1:nrow(r_levels)){
 
 plot(r_levels[,1], r_levels[,3], type = "p", pch=19, col="red", las=1, ylab="frequency of cooperation", xlab="cost / benefit ratio r", main=paste(substr(filename,7, nchar(filename))), ylim = c(0,1))
 grid()
+if(conf){
 arrows(r_levels[,1], r_levels[,3]-r_levels[,5], r_levels[,1], r_levels[,3]+r_levels[,5], length=0.05, angle=90, code=3)
+}
 # Error bars indicating the standard error with a 95 % confidence interval
-
+if(nspl){
 if(substr(filename,7,8) == "HD") {
   abline(1,-1,lty=2)}  # HD nonspatial pure and mixed
 if(substr(filename,7,8) == "PD") {
@@ -88,6 +90,7 @@ if(substr(filename,7,8) == "PD") {
   PD_nonsp_y <- c(0.9908, rep(0,19), 0.5)
   lines(PD_nonsp_x,PD_nonsp_y,lty=2)}
   #abline(0,0,lty=2)  # PD nonspatial pure
+}
 }}
 
 
@@ -121,12 +124,12 @@ files <- c(
 
 directory <- "/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/ResultsAndRcode/"
 
-which <- c(8)
+which <- c(1:4)
 
 
-par(mfrow=c(1,1))
+par(mfrow=c(2,2))
 
-autoplot(files,which,directory)
+autoplot(files,which,directory,conf=T,nspl=T)
 
 
 
@@ -135,7 +138,7 @@ autoplot(files,which,directory)
 # several in one plot
 ########################################################################################
 
-multiplot <- function(files, which, directory,plottype){
+multiplot <- function(files, which, directory, plottype, conf, legend, nspl){
   
 firstfiletoplot <-files[which[1]]
 otherfilestoplot <-files[which[2:length(which)]] 
@@ -169,7 +172,10 @@ if(plottype == "l"){
 plot(r_levels[,1], r_levels[,3], type = "l", lty=1, col="red", lwd=2, las=1, ylab="frequency of cooperation", xlab="cost / benefit ratio r", main=paste(substr(filename,7, nchar(filename))), ylim = c(0,1), xlim = c(0,0.1))
 }
 grid()
+if(conf){
 arrows(r_levels[,1], r_levels[,3]-r_levels[,5], r_levels[,1], r_levels[,3]+r_levels[,5], length=0.05, angle=90, code=3)
+}
+if(nspl){
 if(substr(filename,7,8) == "HD") {
   abline(1,-1,lty=2)}  # HD nonspatial pure and mixed
 if(substr(filename,7,8) == "PD") {
@@ -178,7 +184,7 @@ if(substr(filename,7,8) == "PD") {
   lines(PD_nonsp_x,PD_nonsp_y,lty=2)}
     #abline(0,0,lty=2)  # PD nonspatial pure
 }
-
+}
 for (g in 1:length(otherfilestoplot)){
   
 filename <- otherfilestoplot[g]
@@ -211,36 +217,30 @@ if(plottype == "l"){
 colvec <- c("blue","green3","orange","purple")[g]
 lines(r_levels[,1], r_levels[,3], type = "l", lty=1, col=colvec, lwd=2, ylim = c(0,1))
 }
+if(conf){
 arrows(r_levels[,1], r_levels[,3]-r_levels[,5], r_levels[,1], r_levels[,3]+r_levels[,5], length=0.05, angle=90, code=3)
+}
 
-
-
-
+if(legend){
 legenditems <- c(rep("NA",length(which)))
 for (f in 1:length(which)){
 legenditems[f] <- unlist(strsplit(files[which[f]], "[_]"))[4]
 }
-
 if(plottype == "p"){
 legend("topright",legend=legenditems, col=c("red","blue","green3","orange","purple")[1:length(which)], pch=c(21:25)[1:length(which)], pt.bg=c("red","blue","green3","orange","purple")[1:length(which)])
 }
-  
 if(plottype == "l"){
 legend("topright",legend=legenditems, col=c("red","blue","green3","orange","purple")[1:length(which)], lwd=2)
 }
-
-
 }
-
+}
 }
 
 par(mfrow=c(1,1))
 
-
 which <- c(9,10,11,12)
 
-
-multiplot(files,which,directory,"p")
+multiplot(files,which,directory,"p",conf=F,legend=T,nspl=F)
 
 
 ########################################################################################
@@ -250,13 +250,15 @@ multiplot(files,which,directory,"p")
 
 pdf(file="/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/task1_4plot.pdf",width=6, height=7)
 par(mfrow=c(2,2))
-autoplot(files,which,directory)
+which <- (1:4)
+autoplot(files,which,directory,conf=T,nspl=T)
 dev.off()
 
 
-pdf(file="/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/task1_4plot.pdf",width=6, height=7)
-par(mfrow=c(2,2))
-autoplot(files,which,directory)
+pdf(file="/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/task2_multiplot.pdf",width=6, height=6)
+par(mfrow=c(1,1))
+which <- c(9,10,11,12)
+multiplot(files,which,directory,"p",conf=T,legend=T,nspl=T)
 dev.off()
 
 
