@@ -20,11 +20,15 @@ library(data.table)
 #6#filename <- "Task2_HD_spatial_nb12"
 #7#filename <- "Task2_HD_spatial_nb24"
 #8#filename <- "Task2_PD_spatial_nb4"
-#9#filename <- "Task2_PD_spatial_nb12"
-#10#filename <- "Task2_PD_spatial_nb24"
-#11#filename <- "Task3_HD_spatial_nb8_pure_10000"
+#9#filename <- "Task2_PD_spatial_nb8_lowR"
+#10#filename <- "Task2_PD_spatial_nb12"
+#11#filename <- "Task2_PD_spatial_nb24"
+#12#filename <- "Task3_HD_spatial_nb8_pure_10000"
 #NA#filename <- "Task3_HD_spatial_nb8_mixed_10000_incorrect"
-#12#filename <- "Task3_HD_spatial_nb8_mixed_10000_final"
+#13#filename <- "Task3_HD_spatial_nb4_mixed_10000"
+#14#filename <- "Task3_HD_spatial_nb8_mixed_10000"
+#15#filename <- "Task3_HD_spatial_nb12_mixed_10000"
+
 
 
 
@@ -74,26 +78,44 @@ arrows(r_levels[,1], r_levels[,3]-r_levels[,5], r_levels[,1], r_levels[,3]+r_lev
 # Error bars indicating the standard error with a 95 % confidence interval
 
 if(substr(filename,7,8) == "HD") {
-  abline(1,-1,lty=2) }  # HD nonspatial pure and mixed
+  abline(1,-1,lty=2)}  # HD nonspatial pure and mixed
 if(substr(filename,7,8) == "PD") {
-  abline(0,0,lty=2) } # PD nonspatial pure
+  PD_nonsp_x <- seq(0, 1, 0.05) 
+  PD_nonsp_y <- c(0.9908, rep(0,19), 0.5)
+  lines(PD_nonsp_x,PD_nonsp_y,lty=2)}
+  #abline(0,0,lty=2)  # PD nonspatial pure
+}}
 
-#lines(r_levels[,1],1 - r_levels[,2]) # ???
 
-  }
-}
 
 ###########################################
 
 
-files <- c("Task1_HD_nonspatial","Task1_HD_spatial_nb8","Task1_PD_nonspatial","Task1_PD_spatial_nb8","Task2_HD_spatial_nb4","Task2_HD_spatial_nb12","Task2_HD_spatial_nb24","Task2_PD_spatial_nb4","Task2_PD_spatial_nb12","Task2_PD_spatial_nb24","Task3_HD_spatial_nb8_pure_10000","Task3_HD_spatial_nb8_mixed_10000_final")
+files <- c(
+  "Task1_HD_nonspatial",
+  "Task1_HD_spatial_nb8",
+  "Task1_PD_nonspatial",
+  "Task1_PD_spatial_nb8",
+  "Task2_HD_spatial_nb4",
+  "Task2_HD_spatial_nb12",
+  "Task2_HD_spatial_nb24",
+  "Task2_PD_spatial_nb4",
+  "Task2_PD_spatial_nb4_lowR",
+  "Task2_PD_spatial_nb8_lowR",
+  "Task2_PD_spatial_nb12",
+  "Task2_PD_spatial_nb24",
+  "Task3_HD_spatial_nb8_pure_10000",
+  "Task3_HD_spatial_nb4_mixed_10000",
+  "Task3_HD_spatial_nb8_mixed_10000",
+  "Task3_HD_spatial_nb12_mixed_10000"
+  )
 
 directory <- "/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/ResultsAndRcode/"
 
-which <- c(1:4)
+which <- c(3,8)
 
 
-par(mfrow=c(2,2))
+par(mfrow=c(1,2))
 
 autoplot(files,which,directory)
 
