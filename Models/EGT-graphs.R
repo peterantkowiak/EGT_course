@@ -23,8 +23,8 @@ library(data.table)
 #9#filename <- "Task2_PD_spatial_nb12"
 #10#filename <- "Task2_PD_spatial_nb24"
 #11#filename <- "Task3_HD_spatial_nb8_pure_10000"
-#12#filename <- "Task3_HD_spatial_nb8_mixed_10000_incorrect"
-#13#filename <- "Task3_HD_spatial_nb8_mixed_10000_final"
+#NA#filename <- "Task3_HD_spatial_nb8_mixed_10000_incorrect"
+#12#filename <- "Task3_HD_spatial_nb8_mixed_10000_final"
 
 
 
@@ -68,7 +68,7 @@ for (i in 1:nrow(r_levels)){
 ########### plot ######################
 
 
-plot(r_levels[,1], r_levels[,3], type = "p", pch=19, col="red", las=1, ylab="Frequency of cooperation  [ t = 5000, i = 10 ]", xlab="cost / benefit ratio r", main=paste(substr(filename,7, nchar(filename))), ylim = c(0,1))
+plot(r_levels[,1], r_levels[,3], type = "p", pch=19, col="red", las=1, ylab="frequency of cooperation", xlab="cost / benefit ratio r", main=paste(substr(filename,7, nchar(filename))), ylim = c(0,1))
 grid()
 arrows(r_levels[,1], r_levels[,3]-r_levels[,5], r_levels[,1], r_levels[,3]+r_levels[,5], length=0.05, angle=90, code=3)
 # Error bars indicating the standard error with a 95 % confidence interval
@@ -96,3 +96,9 @@ which <- c(1:4)
 par(mfrow=c(2,2))
 
 autoplot(files,which,directory)
+
+
+pdf(file="/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/task1_4plot.pdf",width=6, height=7)
+par(mfrow=c(2,2))
+autoplot(files,which,directory)
+dev.off()
