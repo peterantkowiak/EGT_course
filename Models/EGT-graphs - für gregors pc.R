@@ -71,10 +71,15 @@ grid()
 arrows(r_levels[,1], r_levels[,3]-r_levels[,5], r_levels[,1], r_levels[,3]+r_levels[,5], length=0.05, angle=90, code=3)
 # Error bars indicating the standard error with a 95 % confidence interval
 
-abline(1,-1,lty=2) # HD nonspatial pure and mixed
+#abline(1,-1,lty=2) # HD nonspatial pure and mixed
 
 #lines(r_levels[,1],1 - r_levels[,2]) # ???
 
+
+
+
+#---------------------------------------------------------------------------------------------------------
+###################### PD line for well mixed population  #######################################################################
 filename <- "Task1_PD_nonspatial"
 
 
