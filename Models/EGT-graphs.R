@@ -12,25 +12,21 @@ library(data.table)
 #---------------------------------------
 ########### read data #################
 
-#filename <- "Task1_HD_nonspatial"
-#filename <- "Task1_HD_spatial_nb8"
-#filename <- "Task1_PD_nonspatial" 
-#filename <- "Task1_PD_spatial_nb8"
-#filename <- "Task2_HD_spatial_nb4"
-#filename <- "Task2_HD_spatial_nb12"
-#filename <- "Task2_HD_spatial_nb24"
-#filename <- "Task2_PD_spatial_nb4"
-#filename <- "Task2_PD_spatial_nb12"
-#filename <- "Task2_PD_spatial_nb24"
-#filename <- "Task3_HD_spatial_nb8_pure_10000"
-#filename <- "Task3_HD_spatial_nb8_mixed_10000_incorrect"
-#filename <- "Task3_HD_spatial_nb8_mixed_10000_final"
+#1#filename <- "Task1_HD_nonspatial"
+#2#filename <- "Task1_HD_spatial_nb8"
+#3#filename <- "Task1_PD_nonspatial" 
+#4#filename <- "Task1_PD_spatial_nb8"
+#5#filename <- "Task2_HD_spatial_nb4"
+#6#filename <- "Task2_HD_spatial_nb12"
+#7#filename <- "Task2_HD_spatial_nb24"
+#8#filename <- "Task2_PD_spatial_nb4"
+#9#filename <- "Task2_PD_spatial_nb12"
+#10#filename <- "Task2_PD_spatial_nb24"
+#11#filename <- "Task3_HD_spatial_nb8_pure_10000"
+#12#filename <- "Task3_HD_spatial_nb8_mixed_10000_incorrect"
+#13#filename <- "Task3_HD_spatial_nb8_mixed_10000_final"
 
-files <- c("Task1_HD_nonspatial","Task1_HD_spatial_nb8","Task1_PD_nonspatial","Task1_PD_spatial_nb8","Task2_HD_spatial_nb4","Task2_HD_spatial_nb12","Task2_HD_spatial_nb24","Task2_PD_spatial_nb4","Task2_PD_spatial_nb12","Task2_PD_spatial_nb24","Task3_HD_spatial_nb8_pure_10000","Task3_HD_spatial_nb8_mixed_10000_final")
 
-which <- c(1:4)
-
-directory <- "/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/ResultsAndRcode/"
 
 autoplot <- function(files, which, directory){
   filestoplot <-files[which]
@@ -87,6 +83,16 @@ if(substr(filename,7,8) == "PD") {
   }
 }
 
-par(mfrow=c(2,2))
+###########################################
+
+
+files <- c("Task1_HD_nonspatial","Task1_HD_spatial_nb8","Task1_PD_nonspatial","Task1_PD_spatial_nb8","Task2_HD_spatial_nb4","Task2_HD_spatial_nb12","Task2_HD_spatial_nb24","Task2_PD_spatial_nb4","Task2_PD_spatial_nb12","Task2_PD_spatial_nb24","Task3_HD_spatial_nb8_pure_10000","Task3_HD_spatial_nb8_mixed_10000_final")
+
+directory <- "/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/ResultsAndRcode/"
+
+which <- c(5:10)
+
+
+par(mfrow=c(2,3))
 
 autoplot(files,which,directory)
