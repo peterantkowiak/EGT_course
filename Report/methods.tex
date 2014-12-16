@@ -1,0 +1,50 @@
+\section{Methods}
+
+\subsection{Study area}
+Data were collected in short interviews that were conducted at various locations in and around the city of Freiburg, Germany. The seven interview sites were the city center, the main station, the university campus, the "Vauban" residential district, a village called Denzlingen and a recreation area in the forest. These sites were selected to reflect a broad average of the Freiburg population. All data were collected on October 23rd, 2014 throughout the whole day to further maximize the variety in participants.
+
+\subsection{Data}
+
+\textbf{Interview scheme}
+Our data were collected by conducting short verbal questionnaires that include two main questions: \\\\
+Question 1) Should Germany host more or less refugees?\\
+Question 2) How many people were accepted as refugees in Germany in 2013?\\
+
+The term "refugees" includes asylum seekers, and the terms "to host" and "to be accepted" mean allowing them to stay in Germany either temporarily or permanently. To control for possible confounding factors, we additionally recorded the interviewees’ age, gender and nationality and any other applicable comments (see questionnaire in the appendix). Furthermore, we intentionally collected data from various participants (old, young, male, female, etc.). Before starting the interview we stated that the questionnaire is for a study conducted at the University of Freiburg.
+
+Overall, a 165 people were interviewed. After excluding incomplete records and people not being german citizens 124 records remained. 86 out of them were in favor of hosting more refugees whereas 26 favored less refugees. 12 favored keeping the number stable. The lowest estimate for the number of refugees was 100 while the maximum estimate was 3,000,000.
+
+
+
+
+\subsection{Statistical analysis}
+
+\textbf{Preparation:} For data analysis we used the R statistics software package \citep{RCoreTeam2014}. For a preliminary evaluation of the data, we plotted some parameters and created a histogram of the estimate \ref{fig: Histogram1}. Because of the highly skewed distribution of estimates we logarithmized the estimates to the base of 20,000 (i.e. the real number of refugees admitted) \ref{fig: Histogram2}.
+The answers to Question 1 were numerified for analysis: \\
+\\
+\indent\indent less refugees = -1\\
+\indent\indent same number = 0\\
+\indent\indent more refugees = 1\\
+\\
+\textbf{Regression:} After preparing the data we applied two linear regression models to the data. First, we checked for a correlation between the attitude records and the logarithmized absolute estimates. We then calculated the difference between the estimates and the real number of refugees and checked for a correlation between attitude records and the logarithmized absolute difference.
+
+
+\noindent\textbf{Confoundig factors:} In order to check whether one of the possible confounding factors had an influence on the attitude towards refugees, we conducted an analysis of variance for each of them.
+
+
+%\onecolumn
+
+\begin{figure}[H]
+	\centering 
+	\includegraphics[width=7cm]{Histogram}
+	\caption{Histograms of the estimates}\label{fig: Histogram1}
+\end{figure}
+% schöner machen
+
+\begin{figure}[H]
+	\centering 
+	\includegraphics[width=7cm]{LogHistogram}
+	\caption{Histograms of the logarithmized estimates}\label{fig: Histogram2}
+\end{figure}
+
+%\twocolumn

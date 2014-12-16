@@ -76,157 +76,17 @@ We find that people who oppose hosting more refugees tend to overestimate the re
 \twocolumn
 \sloppy
 
+\include{introduction}
 
-\section{Introduction}
+\include{methods}
 
-\subsection{The broad topic and what has been done before}
-
-The number of refugees asking for shelter in European Countries has strongly increased due to recent conflicts in the Near East and Africa.
-From 336,000 refugees applying for asylum in the EU in 2012, the number of applications has increased to 437,000 in 2013. Because the applications were not equally distributed among the different EU countries, some were not affected at all whereas others had to make enormous efforts to accommodate the refugees. Asylum applications in the UK (+4\%) and France (+8\%) only slightly increased in 2013, while for example Italy (+61\%) and Germany (+64\%) experienced a much stronger increase \citep{BAMF2014}. In Germany as one of the main destination countries 127,000 refugees applied for asylum in 2013. 81,000 application were processed and only 20,000 refugees received a temporal or permanent residence permit \citep{BAMF2013}.
-Now that many german municipalities struggle to find appropriate accommodation for the refugees, a public debate on whether or not to host more refugees has arisen. The opinions expressed differ largely among the population. While many people show honest empathy and try to help, there are many who do not want refugees living in proximity. Even utter xenophobia is pronounced occasionally. Media thereby often echo the most extreme positions.\\
-In our perception the level of knowledge about refugees differs a lot among the population and the debate has turned very emotional so that it is often led by fear rather than facts. For this reason we want to investigate the public opinion and test whether people's attitudes are linked to their knowledge about refugees.
-
-\textbf{Previous Research:}
-There is a lot of research investigating the public opinion on immigrants, which can partly be transferred to the subgroup of refugees. Literature names several possible factors for negative attitudes towards asylum seekers. In general, the fear of crime and economic interests, such as the fear that migrants will take over all jobs have been identified as the most common reasons for negative attitudes towards refugees \citep{Otto2014}. Other authors focused on xenophobia and investigate whether it is related to gender \citep{Jolly2014} economics and education \citep{Francois2013}. Some studies have focused on the impact of media content on public opinion towards asylum seekers \citep{Boomgaarden2009, Perry1990, Brosius1995}. Furthermore, many authors have investigated how personal experience or contact influences people's attitudes \citep{Pettigrew1997}. \cite{Pettigrew1998} describes the underlying psychological processes of prejudice. He established the highly regarded "Intergroup Contact Theory". Its basic message is that a lack of knowledge about a social group leads to prejudice which in turn makes people avoid that group - a self enforcing process. Only direct contact with the social group can refute people's prejudices and bring about higher levels of knowledge and acceptance. \cite{Rydgren2004} stresses the coherence between lack of knowledge and xenophobia: "From an objective point of view, these kinds of beliefs are mostly non-rational or irrational because of their inaccurate correspondence with reality. Put another way, they are mostly false".
-
-\subsection{Problem and Gap of Knowledge}
-Previous research suggests that people who know less about the number of refugees are less tolerant and less likely to approve of more refugees being accepted. However this debate has not come to a final conclusion yet. Authors like \cite{Kahan2014} postulate that knowledge not necessarily correlates with what people think would be the right thing to do. We want to contribute to this discussion by investigating whether there people’s knowledge on refugees actually correlates with their support for Germany hosting more refugees.
-
-
-
-\textbf{Hypothesis:}
-In our study we test the following hypothesis: People who oppose hosting more refugees generally overestimate the number of refugees accepted in Germany.
-
-
-\subsection{Our approach and specific questions}
-
-For testing the Hypothesis we used used two simple interview questions as proxies for knowledge and attitude and correlated them using a linear model. We also recorded possible confounding factors like age, gender and place of the interviews.
-Our study is novel because it is simple and it addresses the issues of a current public debate that previous research has not yet looked at. The correlation between current knowledge and public opinion has not been examined lately, if at all.
-
-
-\section{Methods}
-
-\subsection{Study area}
-Data were collected in short interviews that were conducted at various locations in and around the city of Freiburg, Germany. The seven interview sites were the city center, the main station, the university campus, the "Vauban" residential district, a village called Denzlingen and a recreation area in the forest. These sites were selected to reflect a broad average of the Freiburg population. All data were collected on October 23rd, 2014 throughout the whole day to further maximize the variety in participants.
-
-\subsection{Data}
-
-\textbf{Interview scheme}
-Our data were collected by conducting short verbal questionnaires that include two main questions: \\\\
-Question 1) Should Germany host more or less refugees?\\
-Question 2) How many people were accepted as refugees in Germany in 2013?\\
-
-The term "refugees" includes asylum seekers, and the terms "to host" and "to be accepted" mean allowing them to stay in Germany either temporarily or permanently. To control for possible confounding factors, we additionally recorded the interviewees’ age, gender and nationality and any other applicable comments (see questionnaire in the appendix). Furthermore, we intentionally collected data from various participants (old, young, male, female, etc.). Before starting the interview we stated that the questionnaire is for a study conducted at the University of Freiburg.
-
-Overall, a 165 people were interviewed. After excluding incomplete records and people not being german citizens 124 records remained. 86 out of them were in favor of hosting more refugees whereas 26 favored less refugees. 12 favored keeping the number stable. The lowest estimate for the number of refugees was 100 while the maximum estimate was 3,000,000.
-
-
-
-
-\subsection{Statistical analysis}
-
-\textbf{Preparation:} For data analysis we used the R statistics software package \citep{RCoreTeam2014}. For a preliminary evaluation of the data, we plotted some parameters and created a histogram of the estimate \ref{fig: Histogram1}. Because of the highly skewed distribution of estimates we logarithmized the estimates to the base of 20,000 (i.e. the real number of refugees admitted) \ref{fig: Histogram2}.
-The answers to Question 1 were numerified for analysis: \\
-\\
-\indent\indent less refugees = -1\\
-\indent\indent same number = 0\\
-\indent\indent more refugees = 1\\
-\\
-\textbf{Regression:} After preparing the data we applied two linear regression models to the data. First, we checked for a correlation between the attitude records and the logarithmized absolute estimates. We then calculated the difference between the estimates and the real number of refugees and checked for a correlation between attitude records and the logarithmized absolute difference.
-
-
-\noindent\textbf{Confoundig factors:} In order to check whether one of the possible confounding factors had an influence on the attitude towards refugees, we conducted an analysis of variance for each of them.
-
-
-%\onecolumn
-
-\begin{figure}[H]
-	\centering 
-	\includegraphics[width=7cm]{Histogram}
-	\caption{Histograms of the estimates}\label{fig: Histogram1}
-\end{figure}
-% schöner machen
-
-\begin{figure}[H]
-	\centering 
-	\includegraphics[width=7cm]{LogHistogram}
-	\caption{Histograms of the logarithmized estimates}\label{fig: Histogram2}
-\end{figure}
-
-%\twocolumn
 
 \newpage
 
-\section{Results}
+\include{results}
 
+\include{discussion}
 
-\subsection{Linear Regression}
-In our first linear regression model, we investigated whether there is a correlation between the estimated number of refugees and the tolerance statement. 
-The regression shows a significant correlation between estimates and the attitude statement (figure \ref{fig: Regression}): The higher the estimated number of refugees, the more likely people oppose hosting more refugees.
-
-\begin{figure}[H]
-	\centering 
-	\includegraphics[width=7cm]{Regression}
-	\caption{R summary of the linear regression model}\label{fig: Regression}
-\end{figure}
-
-We produced a residual pattern plot and a Q-Q-Plot of the model to examine model quality. The residuals are nicely distributed in both Residual vs. fitted Plot and Q-Q-Plot (see figure \ref{fig: Q-Q-Plot}). Therefore we consider our model appropriate.
-A summarizing box plot of our model including the regression line is given in figure \ref{fig: ModelPlot}.
-
-In the second regression we correlated the logarithmized absolute difference between estimates and actual refugee number to the attitude records. Our data do not show a significant correlation between attitude and the difference to actual refugee numbers as a proxy for knowledge.
-
-
-
-\begin{figure}[H]
-	\centering 
-	\includegraphics[width=7cm]{Q-Q-Plot}
-	\caption{residual distribution and Q-Q-Plot of the fitted model}\label{fig: Q-Q-Plot}
-\end{figure}
-
-
-\begin{figure}[H]
-	\centering 
-	\includegraphics[width=7cm]{ModelPlot}
-	\caption{Attitude towards refugees in dependence of estimated numbers. Blue = regression line}\label{fig: ModelPlot}
-\end{figure}
-
-
-\subsection{Confounding factors}
-
-In order to check for possible confounding factors, we conducted an analysis of variance for gender, age and place of interview.
-
-\textbf{Gender:} There was no influence of gender on attitude. Surprisingly, statements by male and female are completely equally distributed, even though we were 5 researchers interviewing 124 people. 
-
-\textbf{Age:} According to preliminary data analysis, people favoring more refugees were younger than people who favored keeping the same number or less refugees. However, the ANOVA we conducted to test for an influence of age was not significant (p-value = 0.7898). We therefore do not consider age a relevant confounding factor.
-
-\textbf{Place:} Unlike with the other variables, the place where interviews were conducted had a significant influence on the attitudes expressed. The ANOVA we returned a p-value of 0.0386.
-In Vauban and on campus, people were more positive towards refugees than in the hiking area or at the technical faculty (see figure \ref{fig: Place}).
-
-\begin{figure}
-	\centering 
-	\includegraphics[width=7cm]{Place}
-	\caption{Attitudes towards refugees at different places}\label{fig: Place}
-\end{figure}
-
-
-\section{Discussion and Conclusions}
-
-\subsection{Main findings}
-
-We found that people who oppose hosting more refugees tend to overestimate their real number whereas people who favor hosting more refugees tend to underestimate the real number of refugees.
-However, our data do not support a correlation between knowledge and attitude.
-While gender and age do not have a significant influence on attitude, answers differ significantly among places where the interviews were conducted.
-Our main regression results give rise to discussion. Our data showed a significant correlation between estimates and attitude towards refugees. However, the precision of estimates did not correlate with attitude. According to \cite{Pettigrew1997}, \cite{Pettigrew1998} or \cite{Rydgren2004}, one would expect the estimates of people in favor of refugees to be more precise because they supposedly know more about them. In our study, the estimates of refugee-proponents were not more precise but significantly lower than the estimates of refugee-opponents. This result contrasts the theories of \cite{Pettigrew1997}, \cite{Pettigrew1998} and \cite{Rydgren2004}. We suppose that this difference may be due to several mechanisms. One explanation might be that most people know just so few about refugees that when asked to state their attitude, people can only rely on a gut feeling rather than real knowledge. Therefore, the subliminal perception of refugee presence might rather be the main factor shaping their attitude. According this line of reasoning, the interpretation of the estimates as a proxy of knowledge would have to be revised: The subtle perception of refugee presence might influence both people's attitude and how high they estimate the number of refugees.
-In order to verify this interpretation and test whether above mentioned theories actually apply to the refugee issue, one might refine the interview scheme and include some questions to distinguish between gut feeling and real knowledge.
-
-\subsection{Limitations}
-While gender and age do not have a significant influence on attitude, answers differ significantly among places where the interviews were conducted. We therefore assume that the selection of interview sites is relevant for the outcome. Due to the limited time and number of researchers in our study, our results can not be fully generalized. For reproducing our study on a large scale one should aim to select the interviewees as representative as possible.\\
-Besides the selection of interview sites, the scheme of interviews might constitute a certain limitation to our study. As the interviews were conducted orally, the responses might be influenced by interactions between interviewer and interviewees. For example, interviewees might attribute a pro-refugee opinion to the interviewer and therefore not be honest when having a different opinion themselves. This goes especially for interviewers speaking English. Interviewees might assume that they are talking to migrants and might therefore not want to express a negative attitude towards refugees. Several times it occurred that interviewees were in company of other people who would try to influence the answers by making comments. Although we explicitly asked the interviewees for their personal opinion, the results may have been biased in some cases. To increase objectivity and avoid bias by personal interactions, one could switch to anonymized printed questionnaires in future studies.\\
-
-\subsection{Final conclusions, applications and further research}
-
-In conclusion, we found that people who oppose hosting more refugees tend to overestimate the real numbers whereas people who favor hosting more refugees tend to underestimate the real numbers. However, our data do not support a correlation between precision of estimate and attitude. We cannot tell from our data if this means that subtle perception rather than knowledge influences people's attitude towards refugees. We therefore recommend further investigating this question with a more differentiated questionnaire that incorporates a well-defined proxy for the interviewees knowledge on refugees.\\
-While gender and age did not significantly influence attitude in our study, answers differed significantly among places where the interviews were conducted. When reproducing this study, places for the interviews should be selected so that they represent an average of the population. Furthermore, we recommend using printed questionnaires to ensure objective and honest answers.
 
 
 \section*{Acknowledgements}
@@ -240,7 +100,7 @@ First of all we want to thank all participants of the interviews who have made t
 \newpage
 
 \bibliographystyle{chicago}
-\bibliography{refugees}
+\bibliography{EGT_refs}
 
 
 \end{document}
