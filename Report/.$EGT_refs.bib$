@@ -36,3 +36,17 @@
   Web-of-science-categories = {{Multidisciplinary Sciences}}
 }
 
+@Article{margules2000,
+  Title                    = {Systematic conservation planning},
+  Author                   = {Margules, Chris R and Pressey, Robert L},
+  Journal                  = {Nature},
+  Year                     = {2000},
+  Number                   = {6783},
+  Pages                    = {243--253},
+  Volume                   = {405},
+
+  Owner                    = {G},
+  Publisher                = {Nature Publishing Group},
+  Timestamp                = {2014.12.17}
+}
+
