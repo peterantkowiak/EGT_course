@@ -50,6 +50,20 @@
   Timestamp                = {2014.12.17}
 }
 
+@Article{newmark1996,
+  Title                    = {Insularization of Tanzanian parks and the local extinction of large mammals},
+  Author                   = {Newmark, William D},
+  Journal                  = {Conservation Biology},
+  Year                     = {1996},
+  Number                   = {6},
+  Pages                    = {1549--1556},
+  Volume                   = {10},
+
+  Owner                    = {G},
+  Publisher                = {Wiley Online Library},
+  Timestamp                = {2014.12.17}
+}
+
 @Article{pressey1994,
   Title                    = {Ad hoc reservations: forward or backward steps in developing representative reserve systems?},
   Author                   = {Pressey, RL},
@@ -61,6 +75,20 @@
 
   Owner                    = {G},
   Publisher                = {Wiley Online Library},
+  Timestamp                = {2014.12.17}
+}
+
+@Article{scott2001,
+  Title                    = {Nature reserves: Do they capture the full range of America's biological diversity?},
+  Author                   = {Scott, J Michael and Davis, Frank W and McGhie, R Gavin and Wright, R Gerald and Groves, Craig and Estes, John},
+  Journal                  = {Ecological Applications},
+  Year                     = {2001},
+  Number                   = {4},
+  Pages                    = {999--1007},
+  Volume                   = {11},
+
+  Owner                    = {G},
+  Publisher                = {Eco Soc America},
   Timestamp                = {2014.12.17}
 }
 

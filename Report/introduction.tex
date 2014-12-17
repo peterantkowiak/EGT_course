@@ -2,14 +2,45 @@
 
 \subsection{The broad topic and what has been done before}
 
-game theory
-hd game
-pd game 
-pd hd and biology, processes in nature
-In 1944 the the economic scientist Neumann and Morgenstern developed the theory of games as an economic model. Much later, in the 70th the Evolutionary game theory originated. Instead of playing the game once like in the game theory the game in evolutionary game theory is played over and over again by biologically or socially conditionated players. in the most cases a player is randomly drawn from a large population and has a specific behavior \citep{weibull1997}
+Game Theory
+
+In 1944 the the economic scientist Neumann and Morgenstern developed the theory of games as an economic model. Much later, in the 70th the evolutionary game theory originated. Instead of playing the game once, like in the game theory, the game in evolutionary game theory is played over and over again by biologically or socially conditioned players. In the most cases a player is randomly drawn from a large population and has a specific behavior \citep{weibull1997}
+In general the Prisoner`s Dilemma and the Hawk-Dove game have the following notation for a two player games with the both strategies cooperation, or defection. R, T, S and P are the payoffs of the game.
+
+\begin{tabular}{|c|c|c|}
+		\hline  & C & D \\ 
+		\hline C & R & S \\ 
+		\hline C & T & P \\ 
+		\hline 
+\end{tabular} 
+(R: Reward; T: Temptation; S: Sucker's reward; P: Punishment; C: Cooperator; D: Defector)
+
+
+The Prisoner`s Dilemma
+
+\begin{tabular}{|c|c|c|}
+	\hline  & C & D \\ 
+	\hline C & b-c & -c \\ 
+	\hline D & b & o \\ 
+	\hline 
+\end{tabular} 
+(b: benefit, c: cost)
+
+In a prisoner's dilemma defection the the evolutionarily stable strategy. The defector gets the benefit b when he plays with an cooperator which gets a punishment, the cost c. The relationship between payoffs is T > R > P > S. When cooperation is mutual both have the benefit R=b-c, but pay a cost for that. Mutual defection results in Payoff P = 0 for both players. Because of the punishment of the cooperator, when the other player defects it is the best to defect regardless of the co-players decision \citep{HauertandDoebeli2004}. Though in nature there are examples which prove, that not only defection can be evolutionarily stable. Alarm calls warn other animals from predators. It seems to be that cooperation only works when the cost-to-benefit ratio is not to high and spatial structure exists \citep{scot2001}.
+
+The Hawk-Dove game
+
+\begin{tabular}{|c|c|c|}
+	\hline  & C & D \\ 
+	\hline C & b-c/2 & b-c \\ 
+	\hline D & b & o \\ 
+	\hline 
+\end{tabular} 
+ 
+Field and experimental studies had problems with the Prisoner`s Dilemma as the only model to discuss the behavior of "players". Its difficult to estimate proper fitness payoffs. That caused various problems between theory and field -  and experimental studies. Scientist needed another model for the payoffs of cooperative behavior \citep{newmark1996}. In the Hawk-Dove game mutual cooperators are better off, because they share the cost of cooperation and receiving the whole benefit. Although cooperation gets rewarded, not punished by playing with a defector. The payoffs P and S have a reverse order in the Hawk-Dove game which differs from the Prisoner`s Dilemma. P becomes the worth b-c, so P and S have the reverse order. The new payoff matrix (T>R>S>P) leads to persistence of cooperative players beside defectors except from very high costs (2b>c>b>o) what would recover the Prisoner`s Dilemma \citep{HauertandDoebeli2004} 
+
 \subsection{Problem and Gap of Knowledge}
-A lot of researchers of social, economic and biological science worked on the evolutionary game theory. It has become a powerful tool to investigate the emergence of cooperation in groups \citep{HauertandDoebeli2004}. For the Prisoner`s Dilemma it is widely accepted, that spatial structure supports cooperation \citep{margules2000}. To simulate biological processes there is an increasing discomfort with the Prisoner`s Dilemma as the only model to discuss cooperative behavior. The Hawk-Dove game is an interesting alternative for describing behavior pattern of field studies\citep{pressey1994}. The processes were discussed theoretically for several times \citep{margules2000, pressey1994}, but haven never been simulated, maybe due to a lack of computing power.  To find out the different performance of  the Prisoner`s Dilemma and  the  Hawk-Dove game, we compare the results of various simulations. For describing natural processes there has to be done further investigation of the Hawk-Dove game especially to simulate mutations of the behavior, here called Mixed-strategies. 
-simulation something new
+A lot of researchers of social, economic and biological science worked on the evolutionary game theory. It has become a powerful tool to investigate the emergence of cooperation in groups \citep{HauertandDoebeli2004}. For the Prisoner`s Dilemma it is widely accepted, that spatial structure supports cooperation \citep{margules2000}. To simulate biological processes there is an increasing discomfort with the Prisoner`s Dilemma as the only model to discuss cooperative behavior. The Hawk-Dove game is an interesting alternative for describing behavior pattern of field studies\citep{pressey1994}. The processes were discussed theoretically for several times \citep{margules2000, pressey1994}, but haven never been simulated, maybe due to a lack of computing power.  To find out the different performance of  the Prisoner`s Dilemma and  the  Hawk-Dove game, we compare the results of various simulations. Choosing the right model to describe natural processes is a big challenge for scientist. For describing them with the right model, there has to be done further investigation on the Hawk-Dove game, especially to simulate mutations of the behavior, here called Mixed-strategies. 
 
 \subsection{Our approach and specific questions}
 \textbf{Hypothesis:}
