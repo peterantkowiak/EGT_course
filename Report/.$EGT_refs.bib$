@@ -36,60 +36,45 @@
   Web-of-science-categories = {{Multidisciplinary Sciences}}
 }
 
-@Article{margules2000,
-  Title                    = {Systematic conservation planning},
-  Author                   = {Margules, Chris R and Pressey, Robert L},
-  Journal                  = {Nature},
-  Year                     = {2000},
-  Number                   = {6783},
-  Pages                    = {243--253},
-  Volume                   = {405},
+@Article{milinski1987tit,
+  Title                    = {Tit for tat in sticklebacks and the evolution of cooperation},
+  Author                   = {Milinski, Manfred},
+  Journal                  = {nature},
+  Year                     = {1987},
+  Number                   = {6103},
+  Pages                    = {433--435},
+  Volume                   = {325},
 
   Owner                    = {G},
   Publisher                = {Nature Publishing Group},
-  Timestamp                = {2014.12.17}
+  Timestamp                = {2014.12.18}
 }
 
-@Article{newmark1996,
-  Title                    = {Insularization of Tanzanian parks and the local extinction of large mammals},
-  Author                   = {Newmark, William D},
-  Journal                  = {Conservation Biology},
-  Year                     = {1996},
-  Number                   = {6},
-  Pages                    = {1549--1556},
-  Volume                   = {10},
+@Article{milinski1997,
+  Title                    = {Cooperation under predation risk: experiments on costs and benefits},
+  Author                   = {Milinski, Manfred and L{\"u}thi, Jean H and Eggler, Rolf and Parker, Geoffrey A},
+  Journal                  = {Proceedings of the Royal Society of London. Series B: Biological Sciences},
+  Year                     = {1997},
+  Number                   = {1383},
+  Pages                    = {831--837},
+  Volume                   = {264},
 
   Owner                    = {G},
-  Publisher                = {Wiley Online Library},
-  Timestamp                = {2014.12.17}
+  Publisher                = {The Royal Society},
+  Timestamp                = {2014.12.18}
 }
 
-@Article{pressey1994,
-  Title                    = {Ad hoc reservations: forward or backward steps in developing representative reserve systems?},
-  Author                   = {Pressey, RL},
-  Journal                  = {Conservation biology},
-  Year                     = {1994},
-  Number                   = {3},
-  Pages                    = {662--668},
-  Volume                   = {8},
+@Article{nowak1992,
+  Title                    = {Evolutionary games and spatial chaos},
+  Author                   = {Nowak, Martin A and May, Robert M},
+  Journal                  = {Nature},
+  Year                     = {1992},
+  Number                   = {6398},
+  Pages                    = {826--829},
+  Volume                   = {359},
 
   Owner                    = {G},
-  Publisher                = {Wiley Online Library},
-  Timestamp                = {2014.12.17}
-}
-
-@Article{scott2001,
-  Title                    = {Nature reserves: Do they capture the full range of America's biological diversity?},
-  Author                   = {Scott, J Michael and Davis, Frank W and McGhie, R Gavin and Wright, R Gerald and Groves, Craig and Estes, John},
-  Journal                  = {Ecological Applications},
-  Year                     = {2001},
-  Number                   = {4},
-  Pages                    = {999--1007},
-  Volume                   = {11},
-
-  Owner                    = {G},
-  Publisher                = {Eco Soc America},
-  Timestamp                = {2014.12.17}
+  Timestamp                = {2014.12.18}
 }
 
 @Book{weibull1997,
