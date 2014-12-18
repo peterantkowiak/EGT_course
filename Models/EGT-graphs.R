@@ -116,7 +116,9 @@ files <- c(
   "Task3_HD_spatial_nb4_mixed_10000",
   "Task3_HD_spatial_nb8_mixed_10000",
   "Task3_HD_spatial_nb12_mixed_10000",
-  "Task3_HD_spatial_nb24_mixed_10000"
+  "Task3_HD_spatial_nb24_mixed_10000",
+  "Task2_PD_spatial_nbvar_r003",
+  "Task2_PD_spatial_nbvar_r0065"
   )
 
 directory <- "/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/ResultsAndRcode/"
@@ -135,7 +137,7 @@ autoplot(files,which,directory,conf=T,nspl=T)
 # several in one plot
 ########################################################################################
 
-multiplot <- function(files, which, directory, plottype, conf, legend, nspl, xrange, maincutoff){
+multiplot <- function(files, which, directory, plottype, conf, legend, nspl, lbp, xrange, maincutoff){
   
 firstfiletoplot <-files[which[1]]
 otherfilestoplot <-files[which[2:length(which)]] 
@@ -164,6 +166,7 @@ for (i in 1:nrow(r_levels)){
 ########### plot ###################### 
 if(plottype == "p"){
 plot(r_levels[,1], r_levels[,3], type = "p", pch=21, col="red", bg="red", las=1, ylab="frequency of cooperation", xlab="cost / benefit ratio r", main=paste(substr(filename,7, maincutoff)), ylim = c(0,1), xlim = xrange)
+if(lbp){lines(r_levels[,1], r_levels[,3], type = "l", lty=3, col="red", lwd=1)}
 }
 if(plottype == "l"){
 plot(r_levels[,1], r_levels[,3], type = "l", lty=1, col="red", lwd=2, las=1, ylab="frequency of cooperation", xlab="cost / benefit ratio r", main=paste(substr(filename,7, maincutoff)), ylim = c(0,1), xlim = xrange)
@@ -209,6 +212,7 @@ pchvec <- c(22:25)[g]
 colvec <- c("blue","green3","orange","purple")[g]
 bgvec <- c("blue","green3","orange","purple")[g]
 points(r_levels[,1], r_levels[,3], type = "p", pch=pchvec, col=colvec, bg=bgvec, ylim = c(0,1))
+if(lbp){lines(r_levels[,1], r_levels[,3], type = "l", lty=3, col=colvec, lwd=1)}
 }
 if(plottype == "l"){
 colvec <- c("blue","green3","orange","purple")[g]
@@ -238,7 +242,7 @@ par(mfrow=c(1,1))
 which <- c(9,10,11,12)
 which <- c(16:19)
 
-multiplot(files,which,directory,"p",conf=F,legend=T,nspl=F,xrange=c(0,0.1),maincutoff=16)
+multiplot(files,which,directory,"p",conf=F,legend=T,nspl=F,lbp=T,xrange=c(0,0.1),maincutoff=16)
 
 
 ########################################################################################
@@ -253,10 +257,10 @@ autoplot(files,which,directory,conf=T,nspl=T)
 dev.off()
 
 
-pdf(file="/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/task2_multiplot.pdf",width=6, height=6)
+pdf(file="/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/task2_multiplot.pdf",width=5, height=5)
 par(mfrow=c(1,1))
 which <- c(9,10,11,12)
-multiplot(files,which,directory,"p",conf=T,legend=T,nspl=F,xrange=c(0,0.1),maincutoff=16)
+multiplot(files,which,directory,"p",conf=F,legend=T,nspl=F,lbp=T,xrange=c(0,0.1),maincutoff=16)
 dev.off()
 
 
