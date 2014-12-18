@@ -6,7 +6,7 @@
 
 files <- c(
   "Task1_HD_nonspatial",
-  "Task1_HD_spatial_nb8",
+  "Task1_HD_spatial_nb8_pure",
   "Task1_PD_nonspatial",
   "Task1_PD_spatial_nb8",
   "Task2_HD_spatial_nb4",
@@ -19,7 +19,7 @@ files <- c(
   "Task2_PD_spatial_nb24_lowR",
   "Task2_PD_spatial_nb12",
   "Task2_PD_spatial_nb24",
-  "Task3_HD_spatial_nb8_pure_10000",
+  "Task3_HD_spatial_nb8_pure_10000_incorrect",
   "Task3_HD_spatial_nb4_mixed_10000",
   "Task3_HD_spatial_nb8_mixed_10000",
   "Task3_HD_spatial_nb12_mixed_10000",
@@ -76,7 +76,8 @@ rm(i)
     
     ########### plot ###################### 
     if(plottype == "p"){
-      plot(r_levels[,1], r_levels[,3], type = "p", pch=21, col="red", bg="red", las=1, ylab="frequency of cooperation", xlab="neighborhood radius", main=paste(substr(filename,7, maincutoff)), ylim = c(0,1), xlim = xrange)
+      plot(r_levels[,1], r_levels[,3], type = "p", pch=21, col="red", bg="red", las=1, ylab="frequency of cooperation", xlab="neighborhood radius", ylim = c(0,1), xlim = xrange)
+      #main=paste(substr(filename,7, maincutoff)), 
      if(lbp){ lines(r_levels[,1], r_levels[,3], type = "l", lty=3, col="red", lwd=1)}
     }
     if(plottype == "l"){
@@ -163,7 +164,7 @@ variplot(files,which,directory,"p",conf=T,legend=T,nspl=F,lbp=T,xrange=c(0.3,3.5
 # pdf export
 ########################################################################################
 
-pdf(file="/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/task2_radiusplot.pdf",width=5, height=5)
+pdf(file="/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/task2_radiusplot.pdf",width=5, height=5.5)
 par(mfrow=c(1,1))
 which <- c(20,21)
 variplot(files,which,directory,"p",conf=T,legend=T,nspl=F,lbp=T,xrange=c(0.3,3.5),maincutoff=16)
