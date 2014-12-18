@@ -7,43 +7,9 @@
 The first step for our model was to calculating the average payoff for cooperators and defectors in the non-spatial Prisoner`s Dilemma and Hawk-Dove game. We worked with p for the probability of players being a  defectors (probability of cooperators is 1-p). Due to the payoff matrix of the Hawk-Dove game we used Pc = o.5*(1-p)*c+b-c and Pd = p*b. For the Prisoner`s Dilemma the average payoff for cooperator changes: Pc = (1-p)*b-c. These average Payoffs reduce or increase the fitness of the single players. In an iterated game fitter players reproduce and get an higher percentage of the population, in our case cooperators or defectors. For the next iteration (reproduction) of the game p is calculated new by comparing the fitness of defectors with the fitness of all players.
 
 \subsection{Spatial structure and neighborhood size}
-In our spatial games we have a 50 X 50 square lattice. Every square figures one player. The Whole lattice is updated synchronous. We introduced different neighborhood-sizes from four to 24 neighbors in our model. Therefore we worked with five different radiuses (1, sqrt2, 2, 2*sqrt2, 3,caaliber of players as unit) around the players for five neighborhood-sizes (4, 8, 12, 20, 24). Instead of using p, what was the probability to be a defector in the non-spatial game we insert a local probability pl in the average payoff therms which was calculated with the neighbors probabilities to be a cooperator or defector. With that the fitness of the players is calculated new facing the neighborhood.
+In our spatial games we have a 50 X 50 square lattice. Every square figures one player. The Whole lattice is updated synchronous. We introduced different neighborhood-sizes from four to 24 neighbors in our model. Therefore we worked with five different radiuses (1, sqrt2, 2, 2*sqrt2, 3,caaliber of players as unit) around the players for five neighborhood-sizes (4, 8, 12, 20, 24). Instead of using p, what was the probability to be a defector in the non-spatial game we insert a local probability pl in the average payoff therms which was calculated with the neighbors probabilities to be a cooperator or defector. With that the fitness of the players is calculated new facing the neighborhood. Else than in the non-spatial game the change of the strategy in the next round of the game is not calculated for the whole population, it is calculated for the single player (in our simulation patch). The players randomly choose neighbor for the competition. Than the transition probability (probability to change strategy) is calculated with pc = z/alpha. z is the difference between the fitness of the competitor fc and the own fitness f. alpha is the maximum difference between the payoffs, which is alpha=T-P=b in the Hawk-Dove game and alpha=T-S=b+c in the Prisoner`s Dilemma. normalisation. This corecction therm ensures pc values between 0 and 1. Is z>0 the player changes the strategy with the probability pc, what illustrates a reproduction of the fitter players.
 
-
-
-\textbf{Preparation:} For data analysis we used the R statistics software package \citep{RCoreTeam2014}. For a preliminary evaluation of the data, we plotted some parameters and created a histogram of the estimate \ref{fig: Histogram1}. Because of the highly skewed distribution of estimates we logarithmized the estimates to the base of 20,000 (i.e. the real number of refugees admitted) \ref{fig: Histogram2}.
-The answers to Question 1 were numerified for analysis: \\
-\\
-\indent\indent less refugees = -1\\
-\indent\indent same number = 0\\
-\indent\indent more refugees = 1\\
-\\
-\textbf{Regression:} After preparing the data we applied two linear regression models to the data. First, we checked for a correlation between the attitude records and the logarithmized absolute estimates. We then calculated the difference between the estimates and the real number of refugees and checked for a correlation between attitude records and the logarithmized absolute difference.
-
-
-\noindent\textbf{Confoundig factors:} In order to check whether one of the possible confounding factors had an influence on the attitude towards refugees, we conducted an analysis of variance for each of them.
-
-
-%\onecolumn
-
-\begin{figure}[H]
-	\centering 
-	\includegraphics[width=7cm]{Histogram}
-	\caption{Histograms of the estimates}\label{fig: Histogram1}
-\end{figure}
-% schöner machen
-
-\begin{figure}[H]
-	\centering 
-	\includegraphics[width=7cm]{LogHistogram}
-	\caption{Histograms of the logarithmized estimates}\label{fig: Histogram2}
-\end{figure}
-
-%\twocolumn
-
-
-
-\subsection{Effect of mixed strategies}
-
+\subsection{Effect of mixed strategies in the spatial and nonspatial Hawk-Dove game}
+In our simulation for the Hawk-Dove game with mixed strategies every player is characterized by the probability to play p to show dove-like behaviour
 
 
