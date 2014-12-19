@@ -1,6 +1,8 @@
 
 \section{Results}
 
+??? screenshots of spatial patterns ???
+
 
 \subsection{Effect of spatial structure in PD and HD games}
 
@@ -52,6 +54,23 @@ In spatial HD games: small neighborhoods = bigger profit when r is small, and sm
 
 In spatial PD games: 
 
+Found anomality
+
+r 0.03, nb4 -> stable at propC 0.35 after 2500 steps -> stable
+r 0.065, nb4 -> cooperators die after 900 steps -> unstable
+r 0.03, nb8 -> stable at propC 0.77 after 10000 steps -> stable
+r 0.065, nb8 -> stable at propC 0.55 after 2500 steps -> stable
+r 0.03, nb12 -> stable at propC 0.825 after 7500 steps -> stable
+r 0.065, nb12 -> randomly oscillating around propC 0.33 after 10000 steps -> half-stable
+r 0.03, nb24 -> stable at propC 0.85 after 4000 steps -> stable
+r 0.065, nb 24 -> cooperators die after 7400 steps -> unstable
+
+\begin{itemize}
+\item{\textbf{spatial structure does not automatically make a system stable}}\\
+\item{\textbf{two variables influence whether a system is stable: neighborhood size and cost-benefit ratio}}
+\end{itemize}
+
+
 
 fixed r: at 0.03 and 0.065
 varying neighborhood size
@@ -60,7 +79,7 @@ varying neighborhood size
 \begin{figure}[H]
 	\centering 
 	\includegraphics[width=9.5cm]{task2_radiusplot}
-	\caption{Spatial PD game simulations with fixed cost-benefit-ratio and different neighborhood sizes.  \textbf{[ t = 5000, i = 10 ]} }\label{fig: task2_radiusplot}
+	\caption{Spatial PD game simulations with fixed cost-benefit-ratio and different neighborhood sizes. Radius 1 is adequate to 4 neighbors, radius 1.4 = 8 neighbors, radius 2 = 12 neighbors and radius 2.8 = 24 neighbors.  \textbf{[ t = 10000, i = 10 ]} }\label{fig: task2_radiusplot}
 \end{figure}
 
 
@@ -72,7 +91,7 @@ In our third experiment, we compared the effect of spatial structure in the mixe
 \begin{figure}[H]
 	\centering 
 	\includegraphics[width=9.5cm]{task3_multiplot}
-	\caption{Spatial HD game simulations with neighborhood size 8 and different strategies. The dotted black line depicts the frequency of cooperation in nonspatial games.  \textbf{[ t = 5000, i = 10 ]} }\label{fig: task3_multiplot}
+	\caption{Spatial HD game simulations with neighborhood size 8 and different strategies. The dotted black line depicts the frequency of cooperation in nonspatial games.  \textbf{[ t = 10000, i = 10 ]} }\label{fig: task3_multiplot}
 \end{figure}
 
 
