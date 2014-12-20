@@ -1,5 +1,17 @@
 \section{Methods}
 
+\[
+\displaystyle case ~ ruggedness + ruggedness^2 + disthighway + disthighway^2 + distroad + distroad^2 + landcover
+\]
+
+oder
+
+
+\texttt{blablabla}
+
+
+
+
 \subsection{Non-spatial PD and HD}
 
 The first step for our model was to calculate the average payoff for cooperators and defectors in the non-spatial PD and HD. We used p for the probability of players being defectors (probability of cooperators is 1-p). Due to the payoff matrix of the HD game we used Pc = o.5*(1-p)*c+b-c and P_{d} = p*b. For the PD average pay-off for cooperators changes: P_{c} = (1-p)*b-c. These average Payoffs reduce or increase the fitness of the single players. In an iterated game fitter players reproduce and get a higher percentage of the population - in our case cooperators or defectors. For the next iteration (reproduction) of the game p is now calculated by comparing the fitness of defectors with the fitness of all players.
