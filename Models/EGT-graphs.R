@@ -248,7 +248,7 @@ which <- c(16:19)
 which <- c(2,17)
 
 
-multiplot(files,which,directory,"p",conf=F,legend=T,nspl=F,lbp=T,xrange=c(0,0.1),maincutoff=20)
+multiplot(files,which,directory,"p",conf=F,legend=T,nspl=F,lbp=T,xrange=c(0,1),maincutoff=20)
 
 
 ########################################################################################
