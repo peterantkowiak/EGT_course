@@ -118,10 +118,12 @@ files <- c(
   "Task3_HD_spatial_nb12_mixed_10000",
   "Task3_HD_spatial_nb24_mixed_10000",
   "Task2_PD_spatial_nbvar_r003",
-  "Task2_PD_spatial_nbvar_r0065"
+  "Task2_PD_spatial_nbvar_r0065",
+  "Task2_PD_spatial_nbvar_r003_10000",
+  "Task2_PD_spatial_nbvar_r0065_10000"
   )
 
-directory <- "/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/ResultsAndRcode/"
+directory <- "/home/Peter/Dokumente/uni/WS_14_15/EvolutionaryGameTheory/EGT_course/Report/ResultsAndRcode/"
 
 which <- c(5,2,6,7)
 which <- c(15:18)
@@ -254,21 +256,21 @@ multiplot(files,which,directory,"p",conf=F,legend=T,nspl=F,lbp=T,xrange=c(0,0.1)
 ########################################################################################
 
 
-pdf(file="/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/task2_4plot.pdf",width=6, height=7)
+pdf(file="/home/Peter/Dokumente/uni/WS_14_15/EvolutionaryGameTheory/EGT_course/Report/task2_4plot.pdf",width=6, height=7)
 par(mfrow=c(2,2))
 which <- (5,2,6,7)
 autoplot(files,which,directory,conf=T,nspl=T)
 dev.off()
 
 
-pdf(file="/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/task2_multiplot.pdf",width=5, height=5.5)
+pdf(file="/home/Peter/Dokumente/uni/WS_14_15/EvolutionaryGameTheory/EGT_course/Report/task2_multiplot.pdf",width=5, height=5.5)
 par(mfrow=c(1,1))
 which <- c(9,10,11,12)
 multiplot(files,which,directory,"p",conf=F,legend=T,nspl=F,lbp=T,xrange=c(0,0.1),maincutoff=16)
 dev.off()
 
 
-pdf(file="/home/Peter/Dokumente/uni/WS_14_15/Evolutionary Game Theory/EGT_course/Report/task3_multiplot.pdf",width=5, height=5.5)
+pdf(file="/home/Peter/Dokumente/uni/WS_14_15/EvolutionaryGameTheory/EGT_course/Report/task3_multiplot.pdf",width=5, height=5.5)
 par(mfrow=c(1,1))
 which <- c(2,17)
 multiplot(files,which,directory,"p",conf=F,legend=T,nspl=T,lbp=T,xrange=c(0,1),maincutoff=20)
