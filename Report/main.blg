@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: chicago.bst
 Database file #1: EGT_refs.bib
-You've used 8 entries,
+You've used 15 entries,
             2861 wiz_defined-function locations,
-            676 strings with 6207 characters,
-and the built_in function-call counts, 5458 in all, are:
-= -- 443
-> -- 415
+            725 strings with 7358 characters,
+and the built_in function-call counts, 10642 in all, are:
+= -- 863
+> -- 831
 < -- 0
-+ -- 122
-- -- 146
-* -- 495
-:= -- 1028
-add.period$ -- 24
-call.type$ -- 8
-change.case$ -- 56
-chr.to.int$ -- 8
-cite$ -- 8
-duplicate$ -- 138
-empty$ -- 321
-format.name$ -- 162
-if$ -- 985
++ -- 256
+- -- 288
+* -- 991
+:= -- 1974
+add.period$ -- 45
+call.type$ -- 15
+change.case$ -- 108
+chr.to.int$ -- 15
+cite$ -- 15
+duplicate$ -- 264
+empty$ -- 619
+format.name$ -- 328
+if$ -- 1934
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 7
-newline$ -- 43
-num.names$ -- 80
-pop$ -- 40
+missing$ -- 16
+newline$ -- 78
+num.names$ -- 150
+pop$ -- 81
 preamble$ -- 1
-purify$ -- 107
+purify$ -- 203
 quote$ -- 0
-skip$ -- 148
+skip$ -- 284
 stack$ -- 0
-substring$ -- 287
-swap$ -- 47
+substring$ -- 578
+swap$ -- 87
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 150
+type$ -- 270
 warning$ -- 0
-while$ -- 81
+while$ -- 149
 width$ -- 0
-write$ -- 107
+write$ -- 198

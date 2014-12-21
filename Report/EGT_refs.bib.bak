@@ -1,6 +1,19 @@
 % This file was created with JabRef 2.9.2.
 % Encoding: UTF-8
 
+@ARTICLE{axelrod1981evolution,
+  author = {Axelrod, Robert and Hamilton, William D},
+  title = {The evolution of cooperation},
+  journal = {Science},
+  year = {1981},
+  volume = {211},
+  pages = {1390--1396},
+  number = {4489},
+  owner = {Peter},
+  publisher = {American Association for the Advancement of Science},
+  timestamp = {2014.12.21}
+}
+
 @ARTICLE{clutton1999,
   author = {Clutton-Brock, Timothy H and O'Riain, MJ and Brotherton, PNM and
 	Gaynor, D and Kansky, R and Griffin, AS and Manser, M},
@@ -13,6 +26,19 @@
   owner = {G},
   publisher = {American Association for the Advancement of Science},
   timestamp = {2014.12.18}
+}
+
+@ARTICLE{doebeli1998evolution,
+  author = {Doebeli, Michael and Knowlton, Nancy},
+  title = {The evolution of interspecific mutualisms},
+  journal = {Proceedings of the National Academy of Sciences},
+  year = {1998},
+  volume = {95},
+  pages = {8676--8680},
+  number = {15},
+  owner = {Peter},
+  publisher = {National Acad Sciences},
+  timestamp = {2014.12.21}
 }
 
 @ARTICLE{HauertandDoebeli2004,
@@ -69,6 +95,21 @@
   web-of-science-categories = {{Multidisciplinary Sciences}}
 }
 
+@ARTICLE{killingback1999variable,
+  author = {Killingback, Timothy and Doebeli, Michael and Knowlton, Nancy},
+  title = {Variable investment, the continuous prisoner's dilemma, and the origin
+	of cooperation},
+  journal = {Proceedings of the Royal Society of London. Series B: Biological
+	Sciences},
+  year = {1999},
+  volume = {266},
+  pages = {1723--1728},
+  number = {1430},
+  owner = {Peter},
+  publisher = {The Royal Society},
+  timestamp = {2014.12.21}
+}
+
 @ARTICLE{milinski1987,
   author = {Milinski, Manfred},
   title = {Tit for tat in sticklebacks and the evolution of cooperation},
@@ -109,6 +150,21 @@
   timestamp = {2014.12.18}
 }
 
+@ARTICLE{ohtsuki2006simple,
+  author = {Ohtsuki, Hisashi and Hauert, Christoph and Lieberman, Erez and Nowak,
+	Martin A},
+  title = {A simple rule for the evolution of cooperation on graphs and social
+	networks},
+  journal = {Nature},
+  year = {2006},
+  volume = {441},
+  pages = {502--505},
+  number = {7092},
+  owner = {Peter},
+  publisher = {Nature Publishing Group},
+  timestamp = {2014.12.21}
+}
+
 @MANUAL{R,
   title = {R: A Language and Environment for Statistical Computing},
   author = {{R Core Team}},
@@ -118,6 +174,24 @@
   owner = {G},
   timestamp = {2014.12.21},
   url = {http://www.R-project.org/}
+}
+
+@BOOK{sugden1986economics,
+  title = {The economics of rights, co-operation and welfare},
+  publisher = {Blackwell Oxford},
+  year = {1986},
+  author = {Sugden, Robert},
+  owner = {Peter},
+  timestamp = {2014.12.21}
+}
+
+@BOOK{VonNeumann1944,
+  title = {Theory of Games and Economic Behavior},
+  publisher = {Princeton university press},
+  year = {1944},
+  author = {Von Neumann, John and Morgenstern, Oskar},
+  owner = {Peter},
+  timestamp = {2014.12.21}
 }
 
 @ARTICLE{wang2012spatial,

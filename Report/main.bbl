@@ -1,5 +1,11 @@
 \begin{thebibliography}{}
 
+\bibitem[\protect\citeauthoryear{Axelrod and Hamilton}{Axelrod and
+  Hamilton}{1981}]{axelrod1981evolution}
+Axelrod, R. and W.~D. Hamilton (1981).
+\newblock The evolution of cooperation.
+\newblock {\em Science\/}~{\em 211\/}(4489), 1390--1396.
+
 \bibitem[\protect\citeauthoryear{Clutton-Brock, O'Riain, Brotherton, Gaynor,
   Kansky, Griffin, and Manser}{Clutton-Brock et~al.}{1999}]{clutton1999}
 Clutton-Brock, T.~H., M.~O'Riain, P.~Brotherton, D.~Gaynor, R.~Kansky,
@@ -7,12 +13,27 @@ Clutton-Brock, T.~H., M.~O'Riain, P.~Brotherton, D.~Gaynor, R.~Kansky,
 \newblock Selfish sentinels in cooperative mammals.
 \newblock {\em Science\/}~{\em 284\/}(5420), 1640--1644.
 
+\bibitem[\protect\citeauthoryear{Doebeli and Knowlton}{Doebeli and
+  Knowlton}{1998}]{doebeli1998evolution}
+Doebeli, M. and N.~Knowlton (1998).
+\newblock The evolution of interspecific mutualisms.
+\newblock {\em Proceedings of the National Academy of Sciences\/}~{\em
+  95\/}(15), 8676--8680.
+
 \bibitem[\protect\citeauthoryear{Hauert and Doebeli}{Hauert and
   Doebeli}{2004}]{HauertandDoebeli2004}
 Hauert, C. and M.~Doebeli (2004, APR 8).
 \newblock Spatial structure often inhibits the evolution of cooperation in the
   snowdrift game.
 \newblock {\em NATURE\/}~{\em 428\/}(6983), 643--646.
+
+\bibitem[\protect\citeauthoryear{Killingback, Doebeli, and
+  Knowlton}{Killingback et~al.}{1999}]{killingback1999variable}
+Killingback, T., M.~Doebeli, and N.~Knowlton (1999).
+\newblock Variable investment, the continuous prisoner's dilemma, and the
+  origin of cooperation.
+\newblock {\em Proceedings of the Royal Society of London. Series B: Biological
+  Sciences\/}~{\em 266\/}(1430), 1723--1728.
 
 \bibitem[\protect\citeauthoryear{Milinski}{Milinski}{1987}]{milinski1987}
 Milinski, M. (1987).
@@ -32,10 +53,35 @@ Nowak, M.~A. and R.~M. May (1992).
 \newblock Evolutionary games and spatial chaos.
 \newblock {\em Nature\/}~{\em 359\/}(6398), 826--829.
 
+\bibitem[\protect\citeauthoryear{Ohtsuki, Hauert, Lieberman, and Nowak}{Ohtsuki
+  et~al.}{2006}]{ohtsuki2006simple}
+Ohtsuki, H., C.~Hauert, E.~Lieberman, and M.~A. Nowak (2006).
+\newblock A simple rule for the evolution of cooperation on graphs and social
+  networks.
+\newblock {\em Nature\/}~{\em 441\/}(7092), 502--505.
+
 \bibitem[\protect\citeauthoryear{{R Core Team}}{{R Core Team}}{2014}]{R}
 {R Core Team} (2014).
 \newblock {\em R: A Language and Environment for Statistical Computing}.
 \newblock Vienna, Austria: R Foundation for Statistical Computing.
+
+\bibitem[\protect\citeauthoryear{Sugden}{Sugden}{1986}]{sugden1986economics}
+Sugden, R. (1986).
+\newblock {\em The economics of rights, co-operation and welfare}.
+\newblock Blackwell Oxford.
+
+\bibitem[\protect\citeauthoryear{Von~Neumann and Morgenstern}{Von~Neumann and
+  Morgenstern}{1944}]{VonNeumann1944}
+Von~Neumann, J. and O.~Morgenstern (1944).
+\newblock {\em Theory of Games and Economic Behavior}.
+\newblock Princeton university press.
+
+\bibitem[\protect\citeauthoryear{Wang, Xia, Wang, Ding, and Sun}{Wang
+  et~al.}{2012}]{wang2012spatial}
+Wang, J., C.~Xia, Y.~Wang, S.~Ding, and J.~Sun (2012).
+\newblock Spatial prisoner’s dilemma games with increasing size of the
+  interaction neighborhood on regular lattices.
+\newblock {\em Chinese Science Bulletin\/}~{\em 57\/}(7), 724--728.
 
 \bibitem[\protect\citeauthoryear{Weibull}{Weibull}{1997}]{weibull1997}
 Weibull, J.~W. (1997).

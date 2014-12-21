@@ -4,32 +4,30 @@
 
 \subsubsection*{Spatial structure}
 
-compare the effect of spatial structure on the persistence of cooperators in PD and HD !!! see paper!!!
+
+If the \textbf{Prisoner's Dilemma} is played in well-mixed populations, cooperation is not an evolutionarily stable strategy. However, previous research has shown that associative interactions, such as spatial structure can allow for the evolution of cooperation \citep{nowak1992,doebeli1998evolution,killingback1999variable}. In our simulations, we could reproduce this finding: In spatial PD games, cooperators form spatial clusters that reduce the exploitation by defectors.
+However, cooperation could only be maintained at very low cost-benefit ratios ($r<0.1$). At higher r-values, defectors ``eat up'' the clusters from their borders so that the cooperators vanish from the population. Our finding matches well with the results of \cite{ohtsuki2006simple} who investigated different ratios of $benefit / cost$ found a threshold value: If $b/c$ is bigger than the average number of neighbors, cooperation can evolve. 
 
 
-PD:
-associative interactions,
-such as those that are due to kinship20, discrimination21 or “popu-
-lation viscosity”, which includes spatial structure, would favour
-the evolution of cooperation.
-Such associations can lead to the formation of clusters of coopera-
-tors that can maintain cooperation against defecting invaders at the
-cluster boundaries.
+In the \textbf{Hawk-Dove Game}, the effect of spatial structure is more ambiguous. Due to the payoff structure of the HD game, it is most beneficial to use different strategies than neighboring cells. For this reason, even well-mixed populations maintain a ratio of $1-r$ cooperators. The same mechanism, however, inhibits the emergence of larger clusters. Instead, clusters in the shape of crosses or filaments are formed. Especially at higher r-values where the natural proportion of defectors is high, cooperators are much more prone to exploitation in the contact zones where they encounter adjacent defectors. As a consequence, the ratio of cooperators is lower than in well-mixed population for most (higher) r-values. Unlike in the well-mixed population, cooperation can vanish completely at high r-values. \\
+At very low r-values, we found that cooperators profit from spatial structure. A possible explanation could be that even if the co-player defects, in the HD game the benefit of cooperation can still outweigh the cost. Furthermore, cooperators profit from cooperating neighbors, which are much more frequent at low r-values \citep{HauertandDoebeli2004}. 
 
-
-HD:
- cooperation is already maintained in the well-
- mixed versions of these games, because the payoffs are such that it is
- best to adopt strategies that differ from the strategies of the
- opponents. This hinders cluster formation of cooperators in spatial
- populations.
 
 
 \subsubsection*{Different neighborhood sizes}
 
+Our simulations on the effect of varying neighborhood sizes again produced very different results for PD and HD games. 
+In the \textbf{HD game}, both benefits and disadvantages through spatial structure were most pronounced in the small neighborhood ($4$ neighbors). The bigger the neighborhood, the curves leveled out and converged towards the linear $1-r$ relationship from the non-spatial HD game. We think that this effect is caused by the fact that in the HD game, spatial structure only works over very small distances because there are no larger clusters of the same strategy. When the co-player for the next round is drawn, in bigger neighborhoods the ratios of the different strategies are closer to the population average.
+Besides the fact that spatial structure has a larger effect in small neighborhoods, we found that the extinction threshold for cooperators also varies with neighborhood size. This confirms the findings of \cite{HauertandDoebeli2004}.\\
+Regarding the \textbf{PD game}, our results leave more room for interpretation.
 
-spatial HD: cooperation extinguishing threshold $1 / N > 1 - r$
-spatial PD: Ohtsuki et al 2006
+
+\cite{ohtsuki2006simple}
+
+
+
+\citep{wang2012spatial}
+
 
 very small neighborhoods (4) are not sufficiently as capable to reduce exploitation from defectors as bigger ones
 turning point / other processes
