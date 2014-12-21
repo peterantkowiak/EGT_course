@@ -109,6 +109,17 @@
   timestamp = {2014.12.18}
 }
 
+@MANUAL{R,
+  title = {R: A Language and Environment for Statistical Computing},
+  author = {{R Core Team}},
+  organization = {R Foundation for Statistical Computing},
+  address = {Vienna, Austria},
+  year = {2014},
+  owner = {G},
+  timestamp = {2014.12.21},
+  url = {http://www.R-project.org/}
+}
+
 @ARTICLE{wang2012spatial,
   author = {Wang, Juan and Xia, ChengYi and Wang, YiLing and Ding, Shuai and
 	Sun, JunQing},

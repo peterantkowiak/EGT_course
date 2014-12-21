@@ -9,10 +9,10 @@ Clutton-Brock, T.~H., M.~O'Riain, P.~Brotherton, D.~Gaynor, R.~Kansky,
 
 \bibitem[\protect\citeauthoryear{Hauert and Doebeli}{Hauert and
   Doebeli}{2004}]{HauertandDoebeli2004}
-Hauert, C. and M.~Doebeli ({2004}, {APR 8}).
-\newblock {Spatial structure often inhibits the evolution of cooperation in the
-  snowdrift game}.
-\newblock {\em {NATURE}\/}~{\em {428}\/}({6983}), {643--646}.
+Hauert, C. and M.~Doebeli (2004, APR 8).
+\newblock Spatial structure often inhibits the evolution of cooperation in the
+  snowdrift game.
+\newblock {\em NATURE\/}~{\em 428\/}(6983), 643--646.
 
 \bibitem[\protect\citeauthoryear{Milinski}{Milinski}{1987}]{milinski1987}
 Milinski, M. (1987).
@@ -31,6 +31,11 @@ Milinski, M., J.~H. L{\"u}thi, R.~Eggler, and G.~A. Parker (1997).
 Nowak, M.~A. and R.~M. May (1992).
 \newblock Evolutionary games and spatial chaos.
 \newblock {\em Nature\/}~{\em 359\/}(6398), 826--829.
+
+\bibitem[\protect\citeauthoryear{{R Core Team}}{{R Core Team}}{2014}]{R}
+{R Core Team} (2014).
+\newblock {\em R: A Language and Environment for Statistical Computing}.
+\newblock Vienna, Austria: R Foundation for Statistical Computing.
 
 \bibitem[\protect\citeauthoryear{Weibull}{Weibull}{1997}]{weibull1997}
 Weibull, J.~W. (1997).
