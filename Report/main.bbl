@@ -42,4 +42,10 @@ Weibull, J.~W. (1997).
 \newblock {\em Evolutionary game theory}.
 \newblock MIT press.
 
+\bibitem[\protect\citeauthoryear{Wilensky}{Wilensky}{1999}]{Wilensky1999}
+Wilensky, U. (1999).
+\newblock {\em NetLogo}.
+\newblock Center for Connected Learning and Computer-Based Modeling,
+  Northwestern University. Evanston, IL.
+
 \end{thebibliography}

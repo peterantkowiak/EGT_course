@@ -17,15 +17,15 @@
 
 @ARTICLE{HauertandDoebeli2004,
   author = {Hauert, C and Doebeli, M},
-  title = {{Spatial structure often inhibits the evolution of cooperation in
-	the snowdrift game}},
-  journal = {{NATURE}},
-  year = {{2004}},
-  volume = {{428}},
-  pages = {{643-646}},
-  number = {{6983}},
-  month = {{APR 8}},
-  abstract = {{Understanding the emergence of cooperation is a fundamental problem
+  title = {Spatial structure often inhibits the evolution of cooperation in
+	the snowdrift game},
+  journal = {NATURE},
+  year = {2004},
+  volume = {428},
+  pages = {643-646},
+  number = {6983},
+  month = {APR 8},
+  abstract = {Understanding the emergence of cooperation is a fundamental problem
 	in evolutionary biology(1). Evolutionary game theory(2,3) has become
 	a powerful framework with which to investigate this problem. Two
 	simple games have attracted most attention in theoretical and experimental
@@ -43,7 +43,7 @@
 	particular, spatial structure eliminates cooperation if the cost-to-benefit
 	ratio of cooperation is high. Our results caution against the common
 	belief that spatial structure is necessarily beneficial for cooperative
-	behaviour.}},
+	behaviour.},
   address = {{MACMILLAN BUILDING, 4 CRINAN ST, LONDON N1 9XW, ENGLAND}},
   affiliation = {{Hauert, C (Reprint Author), Univ British Columbia, Dept Zool, 6270
 	Univ Blvd, Vancouver, BC V6T 1Z4, Canada. Univ British Columbia,
@@ -51,7 +51,7 @@
 	Dept Math, Vancouver, BC V6T 1Z4, Canada.}},
   author-email = {{hauert@zoology.ubc.ca}},
   doc-delivery-number = {{810IE}},
-  doi = {{10.1038/nature02360}},
+  doi = {10.1038/nature02360},
   issn = {{0028-0836}},
   journal-iso = {{Nature}},
   keywords-plus = {{PRISONERS-DILEMMA; ALTRUISM; POPULATION; MODEL}},
@@ -142,5 +142,16 @@
   author = {Weibull, J{\"o}rgen W},
   owner = {G},
   timestamp = {2014.12.17}
+}
+
+@MANUAL{Wilensky1999,
+  title = {NetLogo},
+  author = {Wilensky, Uri},
+  organization = {Center for Connected Learning and Computer-Based Modeling, Northwestern
+	University. Evanston, IL},
+  year = {1999},
+  owner = {Peter},
+  timestamp = {2014.12.21},
+  url = {http://ccl.northwestern.edu/netlogo/}
 }
 
