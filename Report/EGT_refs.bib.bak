@@ -1,103 +1,135 @@
-% This file was created with JabRef 2.10.
+% This file was created with JabRef 2.9.2.
 % Encoding: UTF-8
 
-
-@Article{clutton1999,
-  Title                    = {Selfish sentinels in cooperative mammals},
-  Author                   = {Clutton-Brock, Timothy H and O'Riain, MJ and Brotherton, PNM and Gaynor, D and Kansky, R and Griffin, AS and Manser, M},
-  Journal                  = {Science},
-  Year                     = {1999},
-  Number                   = {5420},
-  Pages                    = {1640--1644},
-  Volume                   = {284},
-
-  Owner                    = {G},
-  Publisher                = {American Association for the Advancement of Science},
-  Timestamp                = {2014.12.18}
+@ARTICLE{clutton1999,
+  author = {Clutton-Brock, Timothy H and O'Riain, MJ and Brotherton, PNM and
+	Gaynor, D and Kansky, R and Griffin, AS and Manser, M},
+  title = {Selfish sentinels in cooperative mammals},
+  journal = {Science},
+  year = {1999},
+  volume = {284},
+  pages = {1640--1644},
+  number = {5420},
+  owner = {G},
+  publisher = {American Association for the Advancement of Science},
+  timestamp = {2014.12.18}
 }
 
-@Article{HauertandDoebeli2004,
-  Title                    = {{Spatial structure often inhibits the evolution of cooperation in the snowdrift game}},
-  Author                   = {Hauert, C and Doebeli, M},
-  Journal                  = {{NATURE}},
-  Year                     = {{2004}},
-
-  Month                    = {{APR 8}},
-  Number                   = {{6983}},
-  Pages                    = {{643-646}},
-  Volume                   = {{428}},
-
-  Abstract                 = {{Understanding the emergence of cooperation is a fundamental problem in evolutionary biology(1). Evolutionary game theory(2,3) has become a powerful framework with which to investigate this problem. Two simple games have attracted most attention in theoretical and experimental studies: the Prisoner's Dilemma(4) and the snowdrift game (also known as the hawk-dove or chicken game)(5). In the Prisoner's Dilemma, the non-cooperative state is evolutionarily stable, which has inspired numerous investigations of suitable extensions that enable cooperative behaviour to persist. In particular, on the basis of spatial extensions of the Prisoner's Dilemma, it is widely accepted that spatial structure promotes the evolution of cooperation(6-8). Here we show that no such general predictions can be made for the effects of spatial structure in the snowdrift game. In unstructured snowdrift games, intermediate levels of cooperation persist. Unexpectedly, spatial structure reduces the proportion of cooperators for a wide range of parameters. In particular, spatial structure eliminates cooperation if the cost-to-benefit ratio of cooperation is high. Our results caution against the common belief that spatial structure is necessarily beneficial for cooperative behaviour.}},
-  Address                  = {{MACMILLAN BUILDING, 4 CRINAN ST, LONDON N1 9XW, ENGLAND}},
-  Affiliation              = {{Hauert, C (Reprint Author), Univ British Columbia, Dept Zool, 6270 Univ Blvd, Vancouver, BC V6T 1Z4, Canada. Univ British Columbia, Dept Zool, Vancouver, BC V6T 1Z4, Canada. Univ British Columbia, Dept Math, Vancouver, BC V6T 1Z4, Canada.}},
-  Author-email             = {{hauert@zoology.ubc.ca}},
-  Doc-delivery-number      = {{810IE}},
-  Doi                      = {{10.1038/nature02360}},
-  ISSN                     = {{0028-0836}},
-  Journal-iso              = {{Nature}},
-  Keywords-plus            = {{PRISONERS-DILEMMA; ALTRUISM; POPULATION; MODEL}},
-  Language                 = {{English}},
-  Number-of-cited-references = {{29}},
-  Orcid-numbers            = {{Hauert, Christoph/0000-0002-1239-281X }},
-  Owner                    = {Peter},
-  Publisher                = {{NATURE PUBLISHING GROUP}},
-  Research-areas           = {{Science \& Technology - Other Topics}},
-  Researcherid-numbers     = {{Hauert, Christoph/E-5369-2011 Doebeli, Michael/D-5391-2012}},
-  Times-cited              = {{558}},
-  Timestamp                = {2014.12.08},
-  Type                     = {{Article}},
-  Unique-id                = {{ISI:000220697200041}},
-  Web-of-science-categories = {{Multidisciplinary Sciences}}
+@ARTICLE{HauertandDoebeli2004,
+  author = {Hauert, C and Doebeli, M},
+  title = {{Spatial structure often inhibits the evolution of cooperation in
+	the snowdrift game}},
+  journal = {{NATURE}},
+  year = {{2004}},
+  volume = {{428}},
+  pages = {{643-646}},
+  number = {{6983}},
+  month = {{APR 8}},
+  abstract = {{Understanding the emergence of cooperation is a fundamental problem
+	in evolutionary biology(1). Evolutionary game theory(2,3) has become
+	a powerful framework with which to investigate this problem. Two
+	simple games have attracted most attention in theoretical and experimental
+	studies: the Prisoner's Dilemma(4) and the snowdrift game (also known
+	as the hawk-dove or chicken game)(5). In the Prisoner's Dilemma,
+	the non-cooperative state is evolutionarily stable, which has inspired
+	numerous investigations of suitable extensions that enable cooperative
+	behaviour to persist. In particular, on the basis of spatial extensions
+	of the Prisoner's Dilemma, it is widely accepted that spatial structure
+	promotes the evolution of cooperation(6-8). Here we show that no
+	such general predictions can be made for the effects of spatial structure
+	in the snowdrift game. In unstructured snowdrift games, intermediate
+	levels of cooperation persist. Unexpectedly, spatial structure reduces
+	the proportion of cooperators for a wide range of parameters. In
+	particular, spatial structure eliminates cooperation if the cost-to-benefit
+	ratio of cooperation is high. Our results caution against the common
+	belief that spatial structure is necessarily beneficial for cooperative
+	behaviour.}},
+  address = {{MACMILLAN BUILDING, 4 CRINAN ST, LONDON N1 9XW, ENGLAND}},
+  affiliation = {{Hauert, C (Reprint Author), Univ British Columbia, Dept Zool, 6270
+	Univ Blvd, Vancouver, BC V6T 1Z4, Canada. Univ British Columbia,
+	Dept Zool, Vancouver, BC V6T 1Z4, Canada. Univ British Columbia,
+	Dept Math, Vancouver, BC V6T 1Z4, Canada.}},
+  author-email = {{hauert@zoology.ubc.ca}},
+  doc-delivery-number = {{810IE}},
+  doi = {{10.1038/nature02360}},
+  issn = {{0028-0836}},
+  journal-iso = {{Nature}},
+  keywords-plus = {{PRISONERS-DILEMMA; ALTRUISM; POPULATION; MODEL}},
+  language = {{English}},
+  number-of-cited-references = {{29}},
+  orcid-numbers = {{Hauert, Christoph/0000-0002-1239-281X }},
+  owner = {Peter},
+  publisher = {{NATURE PUBLISHING GROUP}},
+  research-areas = {{Science \& Technology - Other Topics}},
+  researcherid-numbers = {{Hauert, Christoph/E-5369-2011 Doebeli, Michael/D-5391-2012}},
+  times-cited = {{558}},
+  timestamp = {2014.12.08},
+  type = {{Article}},
+  unique-id = {{ISI:000220697200041}},
+  web-of-science-categories = {{Multidisciplinary Sciences}}
 }
 
-@Article{milinski1987,
-  Title                    = {Tit for tat in sticklebacks and the evolution of cooperation},
-  Author                   = {Milinski, Manfred},
-  Journal                  = {nature},
-  Year                     = {1987},
-  Number                   = {6103},
-  Pages                    = {433--435},
-  Volume                   = {325},
-
-  Owner                    = {G},
-  Publisher                = {Nature Publishing Group},
-  Timestamp                = {2014.12.18}
+@ARTICLE{milinski1987,
+  author = {Milinski, Manfred},
+  title = {Tit for tat in sticklebacks and the evolution of cooperation},
+  journal = {nature},
+  year = {1987},
+  volume = {325},
+  pages = {433--435},
+  number = {6103},
+  owner = {G},
+  publisher = {Nature Publishing Group},
+  timestamp = {2014.12.18}
 }
 
-@Article{milinski1997,
-  Title                    = {Cooperation under predation risk: experiments on costs and benefits},
-  Author                   = {Milinski, Manfred and L{\"u}thi, Jean H and Eggler, Rolf and Parker, Geoffrey A},
-  Journal                  = {Proceedings of the Royal Society of London. Series B: Biological Sciences},
-  Year                     = {1997},
-  Number                   = {1383},
-  Pages                    = {831--837},
-  Volume                   = {264},
-
-  Owner                    = {G},
-  Publisher                = {The Royal Society},
-  Timestamp                = {2014.12.18}
+@ARTICLE{milinski1997,
+  author = {Milinski, Manfred and L{\"u}thi, Jean H and Eggler, Rolf and Parker,
+	Geoffrey A},
+  title = {Cooperation under predation risk: experiments on costs and benefits},
+  journal = {Proceedings of the Royal Society of London. Series B: Biological
+	Sciences},
+  year = {1997},
+  volume = {264},
+  pages = {831--837},
+  number = {1383},
+  owner = {G},
+  publisher = {The Royal Society},
+  timestamp = {2014.12.18}
 }
 
-@Article{nowak1992,
-  Title                    = {Evolutionary games and spatial chaos},
-  Author                   = {Nowak, Martin A and May, Robert M},
-  Journal                  = {Nature},
-  Year                     = {1992},
-  Number                   = {6398},
-  Pages                    = {826--829},
-  Volume                   = {359},
-
-  Owner                    = {G},
-  Timestamp                = {2014.12.18}
+@ARTICLE{nowak1992,
+  author = {Nowak, Martin A and May, Robert M},
+  title = {Evolutionary games and spatial chaos},
+  journal = {Nature},
+  year = {1992},
+  volume = {359},
+  pages = {826--829},
+  number = {6398},
+  owner = {G},
+  timestamp = {2014.12.18}
 }
 
-@Book{weibull1997,
-  Title                    = {Evolutionary game theory},
-  Author                   = {Weibull, J{\"o}rgen W},
-  Publisher                = {MIT press},
-  Year                     = {1997},
+@ARTICLE{wang2012spatial,
+  author = {Wang, Juan and Xia, ChengYi and Wang, YiLing and Ding, Shuai and
+	Sun, JunQing},
+  title = {Spatial prisoner’s dilemma games with increasing size of the interaction
+	neighborhood on regular lattices},
+  journal = {Chinese Science Bulletin},
+  year = {2012},
+  volume = {57},
+  pages = {724--728},
+  number = {7},
+  owner = {Peter},
+  publisher = {Springer},
+  timestamp = {2014.12.18}
+}
 
-  Owner                    = {G},
-  Timestamp                = {2014.12.17}
+@BOOK{weibull1997,
+  title = {Evolutionary game theory},
+  publisher = {MIT press},
+  year = {1997},
+  author = {Weibull, J{\"o}rgen W},
+  owner = {G},
+  timestamp = {2014.12.17}
 }
 
