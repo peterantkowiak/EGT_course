@@ -1,9 +1,7 @@
 \section{Discussion and Conclusions}
 
-\subsection{Main findings}
 
-\subsubsection*{Spatial structure}
-
+\subsection{Spatial structure}
 
 If the \textbf{Prisoner's Dilemma} is played in well-mixed populations, cooperation is not an evolutionarily stable strategy. However, previous research has shown that associative interactions, such as spatial structure can allow for the evolution of cooperation \citep{nowak1992,doebeli1998evolution,killingback1999variable}. In our simulations, we could reproduce this finding: In spatial PD games, cooperators form spatial clusters that reduce the exploitation by defectors.
 However, cooperation could only be maintained at very low cost-benefit ratios ($r<0.1$). At higher r-values, defectors ``eat up'' the clusters from their borders so that the cooperators vanish from the population. Our finding matches well with the results of \cite{ohtsuki2006simple} who investigated different ratios of $benefit / cost$ found a threshold value: If $b/c$ is bigger than the average number of neighbors, cooperation can evolve. 
@@ -14,87 +12,36 @@ At very low r-values, we found that cooperators profit from spatial structure. A
 
 
 
-\subsubsection*{Different neighborhood sizes}
+\subsection{Different neighborhood sizes}
 
 Our simulations on the effect of varying neighborhood sizes again produced very different results for PD and HD games. 
 In the \textbf{HD game}, both benefits and disadvantages through spatial structure were most pronounced in the small neighborhood ($4$ neighbors). The bigger the neighborhood, the curves leveled out and converged towards the linear $1-r$ relationship from the non-spatial HD game. We think that this effect is caused by the fact that in the HD game, spatial structure only works over very small distances because there are no larger clusters of the same strategy. When the co-player for the next round is drawn, in bigger neighborhoods the ratios of the different strategies are closer to the population average.
 Besides the fact that spatial structure has a larger effect in small neighborhoods, we found that the extinction threshold for cooperators also varies with neighborhood size. This confirms the findings of \cite{HauertandDoebeli2004}.\\
-Regarding the \textbf{PD game}, our results leave more room for interpretation.
 
-
-\cite{ohtsuki2006simple}
-
-
-
-\citep{wang2012spatial}
-
-
-very small neighborhoods (4) are not sufficiently as capable to reduce exploitation from defectors as bigger ones
-turning point / other processes
-
-\subsubsection*{Mixed strategies}
-
-compare the effect of spatial structure in the mixed-strategy HD game with that in the pure-strategy game
+\noindent Regarding the effects of different neighborhoods in the \textbf{PD game}, our results leave more room for interpretation. 
+In our simulation, bigger neighborhoods resulted in higher frequencies of cooperation for r-values $\leq 0.05$. For higher r-values this effect partly reversed so that a neighborhood size of $8$ was optimal. At r-values $\geq 0.09$ cooperation died out for any neighborhood size (see figure \ref{fig: task2_multiplot}). We think that these somewhat ambiguous findings result from two different mechanisms that came into play at the same time:\\
+Already in the first simulation, we were able to reproduce the common opinion that spatial structure favors cooperators in the PD game. The survival of cooperators in this case is facilitated by the formation of clusters: Patches in the center of a cluster receive the full benefit of cooperation at every time step. If the cost-benefit ratio is sufficiently low and the neighborhood sufficiently large, cooperating patches on the border of a cluster can profit from interaction with interior cells and compensate the loss that they suffer from adjacent defectors \citep{szabo2007evolutionary}.\\ 
+The general mechanism of cluster formation works the better the larger the neighborhood of a single cell is: Larger clusters are formed and higher proportions of cooperators are maintained. Cooperator patches on the border of a cluster are less exposed to defectors the bigger a cluster is. In comparison, populations with very small neighborhoods ($4$ neighbors) can only form small clusters. Because the payoff of a small cooperator's cluster does not sufficiently exceed that of defectors, smaller clusters cannot reduce exploitation from defectors as efficiently as bigger clusters \citep{wang2012spatial}. We think that this mechanism explains the effect of neighborhood size found for r-values $\leq 0.05$.\\
+Although populations with bigger neighborhood sizes are very stable for low r-values $\leq 0.05$ and maintain high rates of cooperators, the do not remain stable at higher r-values (figure \ref{fig: task2_radiusplot}). We think that this seemingly unexpected phenomenon is caused by the second mechanism: As our simulation lattice is only 50 x 50 patches large, the two biggest neighborhoods are prone to mean-field-type behavior. For low r-values, defection is not influential enough yet, but once the cooperating clusters start to struggle with high r-values, more defectors emerge and the cooperators die out due to the mean-field mechanism. We base our interpretation on the findings of \cite{wang2012spatial}, who recorded a very similar pattern in their PD simulations on regular lattices.
 
 
 
+\subsection{Mixed strategies in the Hawk-Dove game}
 
+In the mixed-strategy HD game, patches do not adopt one fixed strategy but rather inherit a certain probability to play either of the two strategies. In the pure-strategy non-spatial game, the evolutionarily stable frequency of cooperators is $1-r$. In the mixed-strategy non-spatial game, the evolutionarily stable probability to play cooperator in the next round is also $1-r$, which results in the same proportion of cooperators for both mixed and pure strategies. Once spatial structure is added to the model, the outcomes of mixed- and pure-strategy HD games differ though.
+In general, spatial structure in the mixed-strategy HD game lowers the evolutionarily stable probability to cooperate. However, the detriment of spatial structure on cooperators is not as severe as in pure-strategy game. We think that this is because the mixed strategy adds another random element to the patches' strategy determination which counteracts the formation of spatial structures on the lattice.
+In both mixed- and pure-strategy HD games, very high r-values lead to an extinction of cooperators (doves respectively) because there are so many defectors (hawks respectively) that almost any encounter leads to an escalating conflict \citep{HauertandDoebeli2004}.
 
-
-``What does cooperation mean in die Hawk-Dove game?''
-
-Unlike in the PD game where a cooperator can only benefit if the co-player also cooperates, in the HD game the benefit of cooperation can still outweigh the cost.
-
-\\
---> two variables influence whether a system is stable: neighborhood size and cost-benefit ratio
-
-\\
-(Ohtsuki et al 2006:
- ``natural selection favours cooperation, if the
- benefit of the altruistic act, b, divided by the cost, c, exceeds the
- average number of neighbours, k, which means b/c > k. In this
- case, cooperation can evolve as a consequence of ‘social viscosity’
- even in the absence of reputation effects or strategic complexity.'')
- 
-
-\subsection{Limitations}
-While gender and age do not have a significant influence on attitude, answers differ significantly among places where the interviews were conducted. We therefore assume that the selection of interview sites is relevant for the outcome. Due to the limited time and number of researchers in our study, our results can not be fully generalized. For reproducing our study on a large scale one should aim to select the interviewees as representative as possible.\\
-Besides the selection of interview sites, the scheme of interviews might constitute a certain limitation to our study. As the interviews were conducted orally, the responses might be influenced by interactions between interviewer and interviewees. For example, interviewees might attribute a pro-refugee opinion to the interviewer and therefore not be honest when having a different opinion themselves. This goes especially for interviewers speaking English. Interviewees might assume that they are talking to migrants and might therefore not want to express a negative attitude towards refugees. Several times it occurred that interviewees were in company of other people who would try to influence the answers by making comments. Although we explicitly asked the interviewees for their personal opinion, the results may have been biased in some cases. To increase objectivity and avoid bias by personal interactions, one could switch to anonymized printed questionnaires in future studies.\\
 
 \subsection{Final conclusions, applications and further research}
 
-\begin{itemize}
-	\item{\textbf{spatial structure does not automatically make a system stable}}\\
-	\item{\textbf{two variables influence whether a system is stable: neighborhood size and cost-benefit ratio}}
-\end{itemize}
+Based on our results, we conclude that spatial structure does not automatically enhance cooperation in the PD and HD games. In fact, this common belief only applies under certain conditions:\\
+In the \textbf{Prisoner's Dilemma}, where cooperation is not evolutionarily stable in well-mixed population, spatial structure enables cooperation to persist at low cost-benefit ratios. Medium-large neighborhoods amplify this effect.\\
+In the \textbf{Hawk-Dove game} however, spatial structure mostly reduces the frequency of cooperation which usually levels out at $1-r$ in well-mixed populations. Only in the rare case of pure-strategy games with small neighborhoods and very small r-values, cooperators can profit from spatial structure.\\
+We find that neighborhood size and cost-benefit ratio (r) are the two most important variables determining whether a stable ratio of cooperators can persist in a population or not.\\
+When applying Evolutionary Game Theory to natural populations, correctly measuring the payoffs is usually the most tricky part. If for example a high rate of cooperation is maintained in a population, it could either be the result of a spatial PD with small neighborhood size and low cost-benefit ratio, or just the cooperation rate naturally maintained in HD games - all depending on the payoff ranking. For this reason we aim to study more natural examples of PD and HD games and refine the available techniques for payoff measurement.
+ 
 
 
-\begin{comment}
-In conclusion, we found that people who oppose hosting more refugees tend to overestimate the real numbers whereas people who favor hosting more refugees tend to underestimate the real numbers. However, our data do not support a correlation between precision of estimate and attitude. We cannot tell from our data if this means that subtle perception rather than knowledge influences people's attitude towards refugees. We therefore recommend further investigating this question with a more differentiated questionnaire that incorporates a well-defined proxy for the interviewees knowledge on refugees.\\
-While gender and age did not significantly influence attitude in our study, answers differed significantly among places where the interviews were conducted. When reproducing this study, places for the interviews should be selected so that they represent an average of the population. Furthermore, we recommend using printed questionnaires to ensure objective and honest answers.
 
-
-It is widely assumed that spatial structure allows for the evolution of cooperation in PD games. However, this goes only for a small range of cost-benefit ratios. Cooperation is only evolutionarily stable for r-values $ \leq 0.09$, for bigger r-values it disappears from the population.\\
-
-In spatial HD games: small neighborhoods = bigger profit when r is small, and small neighborhoods = bigger disadvantage when r is big.
-
-In spatial PD games: 
-
-Found anomality
-
-r 0.03, nb4 -> stable at propC 0.35 after 2500 steps -> stable
-r 0.065, nb4 -> cooperators die after 900 steps -> unstable
-r 0.03, nb8 -> stable at propC 0.77 after 10000 steps -> stable
-r 0.065, nb8 -> stable at propC 0.55 after 2500 steps -> stable
-r 0.03, nb12 -> stable at propC 0.825 after 7500 steps -> stable
-r 0.065, nb12 -> randomly oscillating around propC 0.33 after 10000 steps -> half-stable
-r 0.03, nb24 -> stable at propC 0.85 after 4000 steps -> stable
-r 0.065, nb 24 -> cooperators die after 7400 steps -> unstable
-
-
-fixed r: at 0.03 and 0.065
-varying neighborhood size
-5000 steps, 5 repetitions
-
-\end{comment}
 

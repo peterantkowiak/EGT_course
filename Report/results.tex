@@ -1,26 +1,17 @@
 
 \section{Results}
 
-??? screenshots of spatial patterns ???
-!!! Figure captions !!!
-!!! Confidence intervals !!!
-!!! ``Code is in the appendix'' !!!
 
 \subsection{Effect of spatial structure in PD and HD games}
 
-In our first simulation experiment, we compared the effect of spatial structure on the persistence of cooperators in the PD and HD games. For the \textbf{PD game} we were able to reproduce the theoretical prediction that spatial structure enables cooperators to persist, even if cooperation is not an evolutionarily stable strategy in well-mixed populations. Our simulated spatial PD population with neighborhood size $= 8$ could maintain an average of $66.5\%$ cooperators ($\pm 1.12 \%$) at a cost-benefit ratio of $r = 0.05$. For higher cost-benefit ratios, however, cooperation was not evolutionarily stable at this neighborhood size and ceased within the 5000 time steps. If cooperation did was cost-free, the proportion of cooperators remained close to its initial value. See figure \ref{fig: task1_4plot} for a comparison of the frequency of cooperation in spatial and nonspatial PD games.
-
-
-%higher resolution of r values and different nb sizes see next subsection.
-
-
+In our first simulation experiment, we compared the effect of spatial structure on the persistence of cooperators in the PD and HD games. For the \textbf{PD game} we were able to reproduce the theoretical prediction that spatial structure enables cooperators to persist, even if cooperation is not an evolutionarily stable strategy in well-mixed populations. Our simulated spatial PD population with neighborhood size $= 8$ could maintain an average of $66.5\%$ cooperators ($\pm 1.12 \%$) at a cost-benefit ratio of $r = 0.05$. For higher cost-benefit ratios, however, cooperation was not evolutionarily stable at this neighborhood size and ceased within the 5000 time steps. If cooperation did was cost-free, the proportion of cooperators remained close to its initial value. See figure \ref{fig: task1_4plot} for a comparison of the frequency of cooperation in spatial and nonspatial PD games.\\
+In the spatial \textbf{HD game} we found a quite contrary effect of spatial structure. When simulating a well-mixed population we could reproduce the theoretical prediction that the equilibrium frequency of cooperators is $f(wm)=1 - r$. However, adding spatial structure to the model reduced the frequency of cooperators as compared to the non-spatial version for most r values (figure \ref{fig: task1_4plot}). 
 \begin{figure}[H]
 	\centering 
 	\includegraphics[width=9.5cm]{task1_4plot}
-	\caption{Comparison of HD and PD game simulations, both with and without spatial structure.  \textbf{[ t = 5000, i = 10 ]} }\label{fig: task1_4plot}
+	\caption{Comparison of HD and PD game simulations, both with and without spatial structure. [ t = 5000, i = 10, error bars with 95\% confidence]} }\label{fig: task1_4plot}
 \end{figure}
-
-In the spatial \textbf{HD game} we found a quite contrary effect of spatial structure. When simulating a well-mixed population we could reproduce the theoretical prediction that the equilibrium frequency of cooperators is $1 - r$. However, adding spatial structure to the model reduced the frequency of cooperators as compared to the non-spatial version for most r values (figure \ref{fig: task1_4plot}). The higher the r value, the bigger the relative disadvantage of cooperators was. For $r \geq 0.8$ cooperation completely vanished from the population. Only at very low cost-benefit ratios, cooperators in the HD game profited from spatial structure. The threshold r value up to which cooperators profited was 0.1 for a neighborhood size of 8.
+The higher the r value, the bigger the relative disadvantage of cooperators was. For $r \geq 0.8$ cooperation completely vanished from the population. Only at very low cost-benefit ratios, cooperators in the HD game profited from spatial structure. The threshold r value up to which cooperators profited was 0.1 for a neighborhood size of 8.
 
 
 
@@ -39,36 +30,36 @@ At the upper end of the range of r-values, another effect of neighborhood size b
 \begin{figure}[H]
 	\centering 
 	\includegraphics[width=9.5cm]{task2_4plot}
-	\caption{Effect of varying neighborhood size in the HD game.  \textbf{[ t = 5000, i = 10 ]} }\label{fig: task2_4plot}
+	\caption{Effect of varying neighborhood size in the HD game. The red dots represent the mean simulated values for the spatial HD game with 95\% confidence intervals. The dashed line represents cooperation frequency in a well-mixed population. [ t = 5000, i = 10 ] }\label{fig: task2_4plot}
 \end{figure}
 
 
 
 \subsubsection*{Spatial Prisoner's Dilemma games}
 For all simulated neighborhood sizes, we could reproduce our finding from the first experiment: Spatial structure allows for the evolution of cooperation in PD games. Nonetheless, our second experiment revealed some constraints to this finding: Firstly, cooperation is only evolutionarily stable for r-values $ \leq 0.09$, for bigger r-values it disappears from the population. Secondly, neighborhood size has a big influence on a population's ability to maintain cooperation.\\
-In very small neighborhoods ($4$ neighbors) , cooperators are generally much less likely to persist and therefore make up for smaller ratios of the population than in bigger neighborhoods (see figure \ref{fig: task2_multiplot}). The extinction threshold for cooperators is at $r=0.04$ and thereby significantly lower than in bigger neighborhoods. 
+In very small neighborhoods ($4$ neighbors), cooperators are generally much less likely to persist and therefore make up for smaller ratios of the population than in bigger neighborhoods (see figure \ref{fig: task2_multiplot}). The extinction threshold for cooperators is at $r=0.04$ and thereby significantly lower than in bigger neighborhoods. 
 
-\begin{figure}[H]
+\begin{figure}
 	\centering 
 	\includegraphics[width=9.5cm]{task2_multiplot}
-	\caption{Spatial PD game simulations with different neighborhood sizes.  \textbf{[ t = 5000, i = 10 ]} }\label{fig: task2_multiplot}
+	\caption{Spatial PD game simulations with different neighborhood sizes. The X-axis is cut off at $0.1$ as for all higher r-values, the frequency of cooperation was $0$. [ t = 5000, i = 10 ] }\label{fig: task2_multiplot}
 \end{figure}
  
-For neighborhood sizes of $8$ or more neighbors, however, the results are ambiguous: Up to a threshold of $r=0.05$, bigger neighborhoods result in slightly higher numbers of cooperators. At r-values between $0.05$ and $0.08$ however, the order inverts so that populations with neighborhood size $8$ can maintain more cooperation than those with neighborhood size $12$ or $24$. \\ 
+\noindent For neighborhood sizes of $8$ or more neighbors, however, the results are ambiguous: Up to a threshold of $r=0.05$, bigger neighborhoods result in slightly higher numbers of cooperators. At r-values between $0.05$ and $0.08$ however, the order inverts so that populations with neighborhood size $8$ can maintain more cooperation than those with neighborhood size $12$ or $24$. \\ 
 Figure \ref{fig: task2_radiusplot} better illustrates this anomality: We ran the spatial PD game for two fixed r-values below ($0.03$) and above ($0.065$) the tipping point and at the same time varied neighborhood size. When looking at the results, it becomes apparent that at r-values close to the extinction threshold, the population with neighborhood size $=8$ constitutes an optimum for cooperators whereas populations with bigger neighborhood size can not maintain the high ratio of cooperators they supported at lower r-values.
 
 
 \begin{figure}[H]
 	\centering 
 	\includegraphics[width=9.5cm]{task2_radiusplot}
-	\caption{Spatial PD game simulations with fixed cost-benefit-ratio and different neighborhood sizes. Radius 1 is adequate to 4 neighbors, radius 1.4 = 8 neighbors, radius 2 = 12 neighbors and radius 2.8 = 24 neighbors.  \textbf{[ t = 10000, i = 10 ]} }\label{fig: task2_radiusplot}
+	\caption{Spatial PD game simulations with fixed cost-benefit-ratio and different neighborhood sizes. Radius 1 is adequate to 4 neighbors, radius 1.4 = 8 neighbors, radius 2 = 12 neighbors and radius 2.8 = 24 neighbors. [ t = 10000, i = 10 ] }\label{fig: task2_radiusplot}
 \end{figure}
 
 
 
 
-\subsection{Effect of mixed strategies}
-In our third experiment, we implemented mixed strategies in the HD game in order to compare the effect of spatial structure in the mixed-strategy HD game with that in the pure-strategy game. In the pure-strategy HD game, spatial structure lowers the ration of cooperators, except for very small r-values where it poses a benefit to them. In mixed-strategy HD games however, this ambivalence does not exist. For any r-values the probability to play cooperator is reduced in comparison to the non-spatial version of the game. On the other hand, the detriment of spatial structure on cooperators is not as severe as in the pure-strategy HD game, especially at high r-values (figure \ref*{fig: task3_multiplot}).\\ 
+\subsection{Effect of mixed strategies in the Hawk-Dove game}
+In our third experiment, we implemented mixed strategies in the HD game in order to compare the effect of spatial structure in the mixed-strategy HD game with that in the pure-strategy game. In the pure-strategy HD game, spatial structure lowers the ration of cooperators, except for very small r-values where it benefits them. In mixed-strategy HD games however, this ambivalence does not exist. For any r-values the probability to play cooperator is reduced in comparison to the non-spatial version of the game. However, the detriment of spatial structure on cooperators is not as severe as in the pure-strategy HD game, especially at high r-values (figure \ref*{fig: task3_multiplot}).\\ 
 The general effect of varying neighborhood size is similar to the pure-strategy HD game: Bigger neighborhoods reduce the detriment of spatial structure to cooperators. As the frequency of cooperators in the mixed-strategy HD game is very close to their $1-r$ frequency in well-mixed populations anyway, the change induced by varying neighborhood size becomes negligibly small.
 
 
@@ -76,7 +67,7 @@ The general effect of varying neighborhood size is similar to the pure-strategy 
 \begin{figure}[H]
 	\centering 
 	\includegraphics[width=9.5cm]{task3_multiplot}
-	\caption{Spatial HD game simulations with neighborhood size = 8 and different strategies. The dotted black line depicts the frequency of cooperation in non-spatial HD games which equals $1-r$ for both pure- and mixed-strategy games.  \textbf{[ t = 10000, i = 10 ]} }\label{fig: task3_multiplot}
+	\caption{Spatial HD game simulations with neighborhood size = 8 and different strategies. The dotted black line depicts the frequency of cooperation in non-spatial HD games which equals $1-r$ for both pure- and mixed-strategy games. [ t = 10000, i = 10 ] }\label{fig: task3_multiplot}
 \end{figure}
 
 
